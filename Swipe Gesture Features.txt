@@ -1,0 +1,112 @@
+=======================================
+Swipe Gesture Features
+=======================================
+Gender recognition in smartphones using touchscreen gestures
+1: Left to right swipe (L2R)
+2: Right to left swipe (R2L)
+3: Scroll up (SU)
+4: Scroll down (SD)
+5: Zoom-in (ZI)
+6: Zoom-out (ZO)
+=======================================
+Gender and Intent Classification From Finger Swiping Behaviours on Gesture Keyboards Using LSTM
+7: Swipe time (Each swipe time take)
+8: Swipe error
+9: Swiping repetitions
+10: Touch type
+11: Touch coordinate (x and y)
+12: Total Length of swipe
+13: Total Time taken
+14: Speed/Velocity
+=======================================
+Identifying Child Users via Touchscreen Interactions
+15: Acceleration (Average Acceleration, Starting Acceleration, Ending Acceleration)
+16: Pressure
+17: Finger size
+18: Hand movement (Which hand is using)
+19: Orientation (Landscape or Portrait)
+20: Grasp (Smartphone holding pattern)
+The left hand with left thumb input (“left-single”),
+held in the right hand with right thumb input (“right-single”),
+cradled in the left hand with right finger input (“left-cradled”),
+cradled in the right hand with left finger input (“right-cradled”),
+two-handed with two thumb input (“two-handed”)
+=======================================
+Predicting Sex and Age using Swipe-Gesture Data from a Mobile Phone
+21: Angle from start to end
+22: Average Acceleration 
+23: Ending acceleartion (vx, vy, vz)
+24: Starting acceleartion (x, y, vz, z)
+25: Total length
+26: Total time
+27: Width of each swipe
+28: Maximum Speed of each swipe
+=======================================
+
+=======================================
+These gestures will be classified based on the starting and end points of the collected x - y coordinates.
+System will be able to capture the swipe gesture autmatically of each participant and store real time data into the Database. 
+
+
+
+Our User-Designed Gestures
+We selected two gestures for each mobile phone task from our first study. Gestures were selected based on popularity (called agreement by others) and consistency. Rather than select based on agreement alone, we wanted gestures which could be combined with other gestures in a coherent way. Agreement alone is not a good way of selecting gestures, as our online evaluation actually found that some of the most popular gestures were not as socially acceptable as their alternatives.
+
+We now describe our gestures and link to videos describing them. See our paper [1] for evaluation results. Click on the gesture names to see a video demonstration.
+
+Check Messages
+Swipe: User swipes quickly over the device. Can be from left-to-right or from right-to-left.
+Draw Rectangle: User extends their finger and traces a rectangle over the device. Imitates the envelope icon used for messages.
+
+Select Item
+Finger Count: User selects from numbered targets by extending their fingers.
+Point and Tap: User points over the item to be selected then makes a selection by “tapping” with their finger.
+
+Note: We also used these gestures in [2] (see here for more information).
+
+Move Left and Right
+Swipe: User swipes over the device to the left or right.
+Flick: User holds their hand over the device and flicks their whole hand to the left or right.
+
+Note: We did not look at any specific mapping of gesture direction to navigation behaviour. This seems to be a controversial subject. If a user flicks their hand to the left, should the content move left (i.e. navigate right) or should the viewport move left (i.e. navigate left)?
+
+Delete Item
+Scrunch: User holds their hand over the device then makes a fist, as though scrunching up a piece of paper.
+Draw X: User extends their finger and draws a cross symbol, as though scoring something out.
+
+Place Phone Call
+Phone Symbol: User makes a telephone symbol with their hand (like the “hang loose” gesture).
+Dial: User extends their finger and draws a circle, as though dialling an old rotary telephone.
+
+Dismiss / Close Item
+Brush Away: User gestures over the device as though they were brushing something away.
+Wave Hand: User waves back and forth over their device, as though waving goodbye.
+
+Answer Incoming Call
+Swipe: As above.
+Pick Up: User holds their hand over the device then raises it, as though picking up a telephone.
+
+Ignore Incoming Call
+Brush Away: As above.
+Wave Hand: As above.
+
+Place Call on Hold
+One Moment: User extends their index finger and holds that pose, as though signalling “one moment” to someone.
+Lower Hand: User lowers their hand with their fingers fully extended, as though holding something down.
+
+End Current Call
+Wave Hand: As above.
+Place Down: Opposite of “Pick Up”, described above.
+
+Check Calendar / Query
+Thumb Out: User extends their thumb and alternates between thumbs up and thumbs down.
+Draw ? Symbol: User extends their finger and traces a question mark symbol over the device.
+
+Accept and Reject
+Thumb Up and Down: User makes the “thumb up” or “thumb down” gesture.
+Draw Tick and Cross: User extends their finger and draws a tick or a cross symbol over the device.
+
+QUESTIONS THAT WE NEED TO ADD IN RESEARCH
+
+- Do you know What is a healthy screen time? To get to know please zoom in this image which one are you?
+- 

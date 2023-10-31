@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{_('User Information')}}</title>
+    <link rel="icon" type="image/x-icon" href="/static/images/favicon.ico">
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/user_info.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
+        </script>
+</head>
+
+<body>
+    <section class="vh-100 gradient-custom">
+        <div class="container py-5 h-100">
+            <div class="row justify-content-center align-items-center h-100">
+                <div class="col-xl-12">
+                    <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+                        <div class="card-body p-4 p-md-5">
+                            <div style="text-align: right;">
+                                <!-- Language Selection -->
+                                {% if language=='en' %}
+                                <a href="/change_lang/es">Español</a>
+                                {% elif language=='es' %}
+                                <a href="/change_lang/en">English</a>
+                                {% endif %}
+                            </div>
+                            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">{{_('User Information')}}</h3>
+                            <form id="form" class="was-validated" action="/user_info" method="POST">
+                                <div class="row form-container">
+                                    <!-- Age -->
+                                    <div class="col-md-6 mb-4">
+                                        <div class="form-outline">
+                                            <label for="age" class="form-label"><strong>{{_('Age')}}</strong></label>
+                                            <input name="age" id="age" type="number" min="1" max="100" required />
+                                            <div class="invalid-feedback" id="validAge">{{_('Please fill out this field
+                                                with a valid age.')}}</div>
+                                        </div>
+                                    </div>
+                                    <!-- Gender -->
+                                    <div class="col-md-6 mb-4">
+                                        <div class="form-outline">
+                                            <label for="gender"
+                                                class="form-label"><strong>{{_('Gender')}}</strong></label>
+                                            <select name="gender" id="gender" required class="form-control">
+                                                <option value="0">{{_('Select Option')}}</option>
+                                                <option value="1">{{_('Male')}}</option>
+                                                <option value="2">{{_('Female')}}</option>
+                                                <option value="3">{{_('Other')}}</option>
+                                            </select>
+                                            <p id="selectGender" class="invalid-feedback">
+                                                {{_('Please select an option.')}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!-- Hand -->
+                                    <div class="col-md-6 mb-4">
+                                        <div class="form-outline">
+                                            <label for="hand" class="form-label"><strong>{{_('Hand')}}</strong></label>
+                                            <select name="hand" id="hand" required class="form-control">
+                                                <option value="left">{{_('Left Hand')}}</option>
+                                                <option value="right">{{_('Right Hand')}}</option>
+                                                <option value="both">{{_('Both Hands')}}</option>
+                                                <option value="right_index">{{_('Right Index')}}</option>
+                                                <option value="left_index">{{_('Left Index')}}</option>
+                                                <option value="right_thumb">{{_('Right Thumb')}}</option>
+                                                <option value="left_thumb">{{_('Left Thumb')}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!-- Touchscreen Device -->
+                                    <div class="col-md-6 mb-4">
+                                        <div class="form-outline">
+                                            <label for="device" class="form-label"><strong>{{_('Touchscreen
+                                                    Device')}}</strong></label>
+                                            <select name="device" id="device" required class="form-control">
+                                                <option value="iphone">{{_('iPhone')}}</option>
+                                                <option value="android">{{_('Android')}}</option>
+                                                <option value="tablet">{{_('Tablet')}}</option>
+                                                <option value="ipad">{{_('iPad')}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <input id="nextButton" class="btn btn-primary btn-lg" type="submit"
+                                            value="{{_('Next')}}" style="float: right;" />
+
+                                        <a href="/" class="btn btn-primary btn-lg"
+                                            style="float: left;">{{_('Back')}}</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+<script src="/static/js/datepicker.js"></script>
+<script src="/static/js/spinbox.js"></script>
+
+<script>
+    // Function to handle the "Next" button click
+    function handleNextButtonClick() {
+        if ($('#age').val() < 1) {
+            $("#validAge").show();
+            return;
+        }
+        if ($("#gender").val() === '0') {
+            $("#selectGender").show();
+            return;
+        }
+        $("#form")[0].submit();
+    }
+
+    // Attach the click event handler to the "Next" button
+    $("#nextButton").click(function (e) {
+        e.preventDefault(); // Prevent the default form submission
+        handleNextButtonClick(); // Call the function to handle the button click
+    });
+
+
+    $("#form").submit(function (e) {
+        e.preventDefault();
+        if ($('#age').val() < 1) {
+            $("#validAge").show();
+            return;
+        }
+        if ($("#gender").val() === '0') {
+            $("#selectGender").show();
+            return;
+        }
+        $("#form")[0].submit();
+    });
+
+    $("#gender").change(() => {
+        if ($("#gender").val() !== '0') {
+            $("#selectGender").hide();
+        } else {
+            $("#selectGender").show();
+        }
+    });
+
+    $('#age').change(() => {
+        if ($('#age').val() < 1) {
+            $("#validAge").show();
+            $('input[type="submit"]').prop("disabled", true);
+        } else {
+            $("#validAge").hide();
+            $('input[type="submit"]').prop("disabled", false);
+        }
+    });
+</script>
+
+</html>

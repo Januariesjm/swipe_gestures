@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ _('Thank You') }}</title>
+    <link rel="icon" type="image/x-icon" href="/static/images/favicon.ico">
+
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/css/user_info.css" rel="stylesheet">
+    <link href="/static/css/thank_you.css" rel="stylesheet">
+    <!-- <link href="/static/css/spinbox.css" rel="stylesheet"> -->
+    
+</head>
+
+<body>
+    <section class="vh-100 gradient-custom">
+        <div class="container py-5 h-100">
+            <div class="row justify-content-center align-items-center h-100">
+                <div class="col-xl-12">
+                    <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+
+                        <div style align="right">
+                                <!-- Simple link -->
+                                {% if language=='en' %} <a href="/change_lang/es">Español</a>
+                                {% elif language=='es' %} <a href="/change_lang/en">English</a>
+                                {% endif %}
+
+                            </div>
+                        <div class="card-body p-4 p-md-5">
+                            <header class="site-header" id="header">
+                                <h1 class="site-header__title" data-lead-id="site-header-title">{{_('THANK YOU!')}}</h1>
+                            </header>
+                        
+                            <div class="main-content">
+                                <i class="fa fa-check main-content__checkmark" id="checkmark"></i>
+                                <p class="main-content__body" data-lead-id="main-content-body">
+                                    {{ _('It means a lot to us, just like you did! We really appreciate you giving us a
+                                    moment of your time today.') }}
+                                </p>
+                            </div>
+                        
+                            <!-- <footer class="site-footer" id="footer">
+                                <p class="site-footer__fineprint" id="fineprint">PhD Research 2022</p>
+                            </footer> -->
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+</body> 
+</html>

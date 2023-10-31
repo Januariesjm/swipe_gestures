@@ -1,0 +1,17 @@
+Detect a finger swipe through JavaScript on the iPhone and Android
+https://stackoverflow.com/questions/2264072/detect-a-finger-swipe-through-javascript-on-the-iphone-and-android
+
+Add touch gestures to your webapp
+http://hammerjs.github.io/
+
+How to detect swipe in JavaScript? [duplicate]
+https://stackoverflow.com/questions/53192433/how-to-detect-swipe-in-javascript
+
+iPhone/Android swipe detection for mobile browser
+https://stackoverflow.com/questions/3150749/iphone-android-swipe-detection-for-mobile-browser
+
+Detect Swipe (Left and Right) on Page Level
+https://stackoverflow.com/questions/57514973/detect-swipe-left-and-right-on-page-level
+
+Iphone - Safari - detect swipe navigation
+https://stackoverflow.com/questions/66867737/iphone-safari-detect-swipe-navigation
