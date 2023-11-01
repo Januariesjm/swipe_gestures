@@ -28,7 +28,7 @@ LANG = 'en'
 @app.route('/user_info', methods=['GET', 'POST'])
 def user_info():
     if "user_id" in session:
-        return redirect(url_for("home"))  # Redirect to the home page if the user is already logged in
+        return redirect(url_for("/user_info"))  # Redirect to the home page if the user is already logged in
 
     if request.method == "POST":
         age = request.form['age']
