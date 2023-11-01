@@ -25,7 +25,7 @@ app.config['BABEL_DEFAULT_LOCALE'] = 'en'
 babel = Babel(app)
 LANG = 'en'
 
-@app.route('/user_info', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def user_info():
     if "user_id" not in session:
         if request.method == "POST":
