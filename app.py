@@ -9,14 +9,10 @@ from flask import (Flask, request, session, url_for, redirect, render_template)
 
 app = Flask(__name__, template_folder="templates")
 
-DATABASE_NAME = config('DATABASE_NAME')
-DATABASE_USER = config('DATABASE_USER')
-DATABASE_PASSWORD = config('DATABASE_PASSWORD')
-DATABASE_HOST = config('DATABASE_HOST')
-DATABASE_PORT = config('DATABASE_PORT')
+DATABASE_URL = os.environ.get("DATABASE_URL")
 SECRET_KEY = config('SECRET_KEY')
 
-app.config['SECRET_KEY'] = SECRET_KEY 
+app.config['SECRET_KEY'] = SECRET_KEY
 app.permanent_session_lifetime = timedelta(days=5)
 app.config['SESSION_TYPE'] = 'filesystem'
 app.config['SESSION_PERMANENT'] = True
@@ -35,13 +31,7 @@ def user_info():
             device = request.form['device']
 
             # Store user data into the database
-            conn = psycopg2.connect(
-                database=DATABASE_NAME,
-                user=DATABASE_USER,
-                password=DATABASE_PASSWORD,
-                host=DATABASE_HOST,
-                port=DATABASE_PORT
-            )
+            conn = psycopg2.connect(DATABASE_URL)
             cur = conn.cursor()
 
             cur.execute("""INSERT INTO user_info(age, gender, hand, touchscreen_device) VALUES(%s, %s, %s, %s)""",
@@ -129,13 +119,8 @@ def swipe_gesture():
           user_id = session['user_id']
 
         # Store the swipe gesture data in the database
-        conn = psycopg2.connect(
-                database=DATABASE_NAME,
-                user=DATABASE_USER,
-                password=DATABASE_PASSWORD,
-                host=DATABASE_HOST,
-                port=DATABASE_PORT
-        )
+        conn = psycopg2.connect(DATABASE_URL)
+        
         cur = conn.cursor()
 
         cur.execute("""
