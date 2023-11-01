@@ -141,7 +141,7 @@ def swipe_gesture():
         conn.commit()
         conn.close()
 
-        return redirect(url_for('swipe_gesture'))  # Redirect back to the same page for the next image
+        return redirect(url_for('thank_you'))  # Redirect back to the same page for the next image
 
     return render_template('swipe_gesture.html')
 
@@ -162,4 +162,4 @@ def thank_you():
     return render_template('thank_you.html')
 
 #if __name__ == "__main__":
-    #app.run(debug=True, port=5000, use_reloader=False)
+       #app.run(debug=True, port=5000, use_reloader=False)
