@@ -25,47 +25,48 @@ app.config['BABEL_DEFAULT_LOCALE'] = 'en'
 babel = Babel(app)
 LANG = 'en'
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/user_info', methods=['GET', 'POST'])
 def user_info():
-    if "user_id" not in session:
-        if request.method == "POST":
-            age = request.form['age']
-            gender = request.form['gender']
-            hand = request.form['hand']
-            device = request.form['device']
+    if "user_id" in session:
+        return redirect(url_for("home"))  # Redirect to the home page if the user is already logged in
 
-            # Store user data into the database
-            conn = psycopg2.connect(
-                database=DATABASE_NAME,
-                user=DATABASE_USER,
-                password=DATABASE_PASSWORD,
-                host=DATABASE_HOST,
-                port=DATABASE_PORT
-            )
-            cur = conn.cursor()
+    if request.method == "POST":
+        age = request.form['age']
+        gender = request.form['gender']
+        hand = request.form['hand']
+        device = request.form['device']
 
-            cur.execute("""INSERT INTO user_info(age, gender, hand, touchscreen_device) VALUES(%s, %s, %s, %s)""",
-                        (age, gender, hand, device))
-            conn.commit()
+        # Store user data into the database
+        conn = psycopg2.connect(
+            database=DATABASE_NAME,
+            user=DATABASE_USER,
+            password=DATABASE_PASSWORD,
+            host=DATABASE_HOST,
+            port=DATABASE_PORT
+        )
+        cur = conn.cursor()
 
-            # Get the last saved user_id and pass it to the session
-            cur.execute("""SELECT * FROM user_info ORDER BY user_id DESC""")
-            user_id = cur.fetchone()[0]
-            conn.close()
+        cur.execute("""INSERT INTO user_info(age, gender, hand, touchscreen_device) VALUES(%s, %s, %s, %s)""",
+                    (age, gender, hand, device))
+        conn.commit()
 
-            age = int(age)
+        # Get the last saved user_id and pass it to the session
+        cur.execute("""SELECT * FROM user_info ORDER BY user_id DESC""")
+        user_id = cur.fetchone()[0]
+        conn.close()
 
-            session['user_id'] = user_id
-            session['age'] = age
-            session['gender'] = gender
-            session['hand'] = hand
-            session['device'] = device
+        age = int(age)
 
-            return redirect(url_for("swipe_gesture"))  # Redirect to the swipe_gesture page
-        return render_template('user_info.html', language=LANG)
-    else:
-        session.pop('user_id', None)
-        return render_template('user_info.html', language=LANG, session=session)
+        session['user_id'] = user_id
+        session['age'] = age
+        session['gender'] = gender
+        session['hand'] = hand
+        session['device'] = device
+
+        return redirect(url_for("swipe_gesture"))  # Redirect to the swipe_gesture page
+
+    return render_template('user_info.html', language=LANG, session = session)
+
 
 
 @app.route('/swipe_gesture', methods=['GET', 'POST'])
