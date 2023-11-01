@@ -161,5 +161,5 @@ def handle_swipe_data():
 def thank_you():
     return render_template('thank_you.html')
 
- #if __name__ == "__main__":
+#if __name__ == "__main__":
     #app.run(debug=True, port=5000, use_reloader=False)
