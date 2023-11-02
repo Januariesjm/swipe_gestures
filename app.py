@@ -5,7 +5,7 @@ from flask import (
     Flask, request, session, url_for, redirect, render_template, jsonify
 )
 import psycopg2
-from flask_babel import Babel, _
+from flask_babel import Babel, _, get_locale, gettext
 from flask_babel import lazy_gettext as _l
 
 app = Flask(__name__, template_folder="templates")
@@ -20,7 +20,7 @@ app.config['SESSION_PERMANENT'] = True
 app.config['BABEL_DEFAULT_LOCALE'] = 'en'
 
 babel = Babel(app)
-
+babel.init_app(app, locale_selector=get_locale)
 @babel.localeselector
 def get_locale():
     return session.get('language', 'en')
