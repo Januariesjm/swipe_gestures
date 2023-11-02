@@ -5,7 +5,7 @@ import os
 from decouple import config
 from datetime import timedelta
 import psycopg2
-from flask_babel import Babel
+from flask_babel import Babel, get_locale
 
 app = Flask(__name__, template_folder="templates")
 
