@@ -21,6 +21,19 @@ app.config['BABEL_DEFAULT_TIMEZONE'] = 'UTC'
 
 babel = Babel(app)
 
+
+@babel.localeselector
+def select_locale():
+    return session.get('language', 'en')
+
+@babel.timezoneselector
+def select_timezone():
+    return 'UTC'  # You can set a default timezone or determine it dynamically
+
+# Pass the get_locale function to the template context
+@app.context_processor
+def inject_get_locale():
+    return dict(get_locale=get_locale)
 @app.template_filter('get_locale')
 def get_locale_filter():
     return get_locale()
@@ -30,6 +43,7 @@ def get_locale():
     if 'language' in session:
         return session['language']
     return request.accept_languages.best_match(['en', 'es'])
+
 
 @babel.timezoneselector
 def get_timezone():
