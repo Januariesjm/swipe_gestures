@@ -92,6 +92,10 @@ swipeForm.addEventListener('submit', (event) => {
         // Handle a successful response, e.g., show a success message
         const successMessage = document.getElementById('successMessage');
         successMessage.style.display = 'block'; // Display the message
+
+        // Redirect to the "thank_you" page
+        window.location.href = '/thank_you';
+
         console.log('Data submitted successfully.');
       } else {
         // Handle errors if the server responds with an error
