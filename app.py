@@ -73,7 +73,7 @@ def user_info():
         return render_template('user_info.html', language=language)
     else:
         session.pop('user_id', None)
-        return render_template('user_info.html', language=language, session=session)
+        return render_template('user_info.html', language=language, session=session, get_locale=get_locale)
 
 
 @app.route('/swipe_gesture', methods=['GET', 'POST'])
