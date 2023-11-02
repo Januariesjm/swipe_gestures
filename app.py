@@ -43,6 +43,7 @@ def change_language(language):
 @app.route('/user_info', methods=['GET', 'POST'])
 def user_info():
     language = session.get('language', 'en')
+    locale = get_locale()
 
     if "user_id" not in session:
         if request.method == "POST":
@@ -73,10 +74,10 @@ def user_info():
             session['device'] = device
 
             return redirect(url_for("swipe_gesture"))
-        return render_template('user_info.html', language=language)
+        return render_template('user_info.html', language=language, locale=locale)
     else:
         session.pop('user_id', None)
-        return render_template('user_info.html', language=language, session=session, get_locale=get_locale)
+        return render_template('user_info.html', language=language, session=session, locale=locale)
 
 
 @app.route('/swipe_gesture', methods=['GET', 'POST'])
