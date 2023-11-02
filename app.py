@@ -5,7 +5,8 @@ from flask import (
     Flask, request, session, url_for, redirect, render_template, jsonify
 )
 import psycopg2
-from flask_babel import Babel
+from flask_babel import Babel, _
+from flask_babel import lazy_gettext as _l
 
 app = Flask(__name__, template_folder="templates")
 
@@ -180,5 +181,5 @@ def thank_you():
 
     return render_template('thank_you.html', language=language)
 
-if __name__ == "__main__":
-    app.run(debug=True, port=5000, use_reloader=False)
+#if __name__ == "__main__":
+    #app.run(debug=True, port=5000, use_reloader=False)
