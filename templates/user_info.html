@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ _('en') | e }}">
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,9 +21,9 @@
                         <div class="card-body p-4 p-md-5">
                             <div style="text-align: right;">
                                 <!-- Language Selection -->
-                                {% if language=='en' %}
+                                {% if get_locale() == 'en' %}
                                 <a href="/change_lang/es">Español</a>
-                                {% elif language=='es' %}
+                                {% elif get_locale() == 'es' %}
                                 <a href="/change_lang/en">English</a>
                                 {% endif %}
                             </div>

@@ -1,11 +1,11 @@
-import json
-import datetime
 import os
 from decouple import config
 from datetime import timedelta
-from flask_babel import Babel
+from flask import (
+    Flask, request, session, url_for, redirect, render_template, jsonify
+)
 import psycopg2
-from flask import (Flask, request, session, url_for, redirect, render_template)
+from flask_babel import Babel
 
 app = Flask(__name__, template_folder="templates")
 
@@ -19,10 +19,24 @@ app.config['SESSION_PERMANENT'] = True
 app.config['BABEL_DEFAULT_LOCALE'] = 'en'
 
 babel = Babel(app)
-LANG = 'en'
+
+@babel.localeselector
+def get_locale():
+    return session.get('language', 'en')
+
+@app.route('/change_lang/<string:language>', methods=['GET'])
+def change_language(language):
+    # Store the selected language in the session
+    session['language'] = language
+
+    # Redirect back to the previous page or a default page
+    return redirect(request.referrer or '/')
 
 @app.route('/user_info', methods=['GET', 'POST'])
 def user_info():
+    # Get the selected language from the session or set a default language
+    language = session.get('language', 'en')
+
     if "user_id" not in session:
         if request.method == "POST":
             age = request.form['age']
@@ -34,8 +48,10 @@ def user_info():
             conn = psycopg2.connect(DATABASE_URL)
             cur = conn.cursor()
 
-            cur.execute("""INSERT INTO user_info(age, gender, hand, touchscreen_device) VALUES(%s, %s, %s, %s)""",
-                        (age, gender, hand, device))
+            cur.execute(
+                """INSERT INTO user_info(age, gender, hand, touchscreen_device) VALUES(%s, %s, %s, %s)""",
+                (age, gender, hand, device)
+            )
             conn.commit()
 
             # Get the last saved user_id and pass it to the session
@@ -52,14 +68,16 @@ def user_info():
             session['device'] = device
 
             return redirect(url_for("swipe_gesture"))  # Redirect to the swipe_gesture page
-        return render_template('user_info.html', language=LANG)
+        return render_template('user_info.html', language=language)
     else:
         session.pop('user_id', None)
-        return render_template('user_info.html', language=LANG, session=session)
-
+        return render_template('user_info.html', language=language, session=session)
 
 @app.route('/swipe_gesture', methods=['GET', 'POST'])
 def swipe_gesture():
+    # Get the selected language from the session or set a default language
+    language = session.get('language', 'en')
+
     if 'user_id' not in session:
         return redirect(url_for('user_info'))
 
@@ -114,13 +132,13 @@ def swipe_gesture():
             grasp = request.form.get('grasp', '')
         except ValueError:
             # Handle cases where form fields are not integers
+            pass
 
         # Get the user_id from the session
-           user_id = session['user_id']
+        user_id = session['user_id']
 
         # Store the swipe gesture data in the database
         conn = psycopg2.connect(DATABASE_URL)
-
         cur = conn.cursor()
 
         cur.execute("""
@@ -143,7 +161,7 @@ def swipe_gesture():
 
         return redirect(url_for('thank_you'))  # Redirect to the "Thank you" page
 
-    return render_template('swipe_gesture.html')
+    return render_template('swipe_gesture.html', language=language)
 
 @app.route('/swipe_data', methods=['POST'])
 def handle_swipe_data():
@@ -153,11 +171,14 @@ def handle_swipe_data():
     print(data)  # Debugging statement
 
     # Your data processing code here
-    return render_template('thank_you.html')
+    return render_template('thank_you.html', language=session.get('language', 'en'))
 
 @app.route('/thank_you')
 def thank_you():
-    return render_template('thank_you.html')
+    # Get the selected language from the session or set a default language
+    language = session.get('language', 'en')
 
-#if __name__ == "__main__":
-#    app.run(debug=True, port=5000, use_reloader=False)
+    return render_template('thank_you.html', language=language)
+
+if __name__ == "__main__":
+    app.run(debug=True, port=5000, use_reloader=False)
