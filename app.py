@@ -116,11 +116,11 @@ def swipe_gesture():
             # Handle cases where form fields are not integers
 
         # Get the user_id from the session
-          user_id = session['user_id']
+           user_id = session['user_id']
 
         # Store the swipe gesture data in the database
         conn = psycopg2.connect(DATABASE_URL)
-        
+
         cur = conn.cursor()
 
         cur.execute("""
@@ -141,10 +141,9 @@ def swipe_gesture():
         conn.commit()
         conn.close()
 
-        return redirect(url_for('thank_you'))  # Redirect back to the same page for the next image
+        return redirect(url_for('thank_you'))  # Redirect to the "Thank you" page
 
-    return render_template('swipe_gesture.html')
-
+    return render_template('thank_you.html')
 
 @app.route('/swipe_data', methods=['POST'])
 def handle_swipe_data():
@@ -162,4 +161,4 @@ def thank_you():
     return render_template('thank_you.html')
 
 #if __name__ == "__main__":
-       #app.run(debug=True, port=5000, use_reloader=False)
+#    app.run(debug=True, port=5000, use_reloader=False)

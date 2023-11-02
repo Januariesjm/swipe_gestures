@@ -69,6 +69,9 @@
                                                 <option value="right_thumb">{{_('Right Thumb')}}</option>
                                                 <option value="left_thumb">{{_('Left Thumb')}}</option>
                                             </select>
+                                            <p id="selectHand" class="invalid-feedback">
+                                                {{_('Please select an option.')}}
+                                            </p>  
                                         </div>
                                     </div>
                                     <!-- Touchscreen Device -->
@@ -83,6 +86,10 @@
                                                 <option value="tablet">{{_('Tablet')}}</option>
                                                 <option value="ipad">{{_('iPad')}}</option>
                                             </select>
+
+                                            <p id="selectDevice" class="invalid-feedback">
+                                                {{_('Please select an option.')}}
+                                            </p>
                                         </div>
                                     </div>
                                     <div>
@@ -111,10 +118,26 @@
             $("#validAge").show();
             return;
         }
+        
+        // Check if a valid option is selected for Gender
         if ($("#gender").val() === '0') {
             $("#selectGender").show();
             return;
         }
+        
+        // Check if a valid option is selected for Hand
+        if ($("#hand").val() === 'left') {
+            $("#selectHand").show();
+            return;
+        }
+        
+        // Check if a valid option is selected for Touchscreen Device
+        if ($("#device").val() === 'iphone') {
+            $("#selectDevice").show();
+            return;
+        }
+
+        // If all checks pass, submit the form
         $("#form")[0].submit();
     }
 
@@ -124,7 +147,6 @@
         handleNextButtonClick(); // Call the function to handle the button click
     });
 
-
     $("#form").submit(function (e) {
         e.preventDefault();
         if ($('#age').val() < 1) {
@@ -133,6 +155,14 @@
         }
         if ($("#gender").val() === '0') {
             $("#selectGender").show();
+            return;
+        }
+        if ($("#hand").val() === 'left') {
+            $("#selectHand").show();
+            return;
+        }
+        if ($("#device").val() === 'iphone') {
+            $("#selectDevice").show();
             return;
         }
         $("#form")[0].submit();
@@ -146,6 +176,22 @@
         }
     });
 
+    $("#hand").change(() => {
+        if ($("#hand").val() !== 'left') {
+            $("#selectHand").hide();
+        } else {
+            $("#selectHand").show();
+        }
+    });
+
+    $("#device").change(() => {
+        if ($("#device").val() !== 'iphone') {
+            $("#selectDevice").hide();
+        } else {
+            $("#selectDevice").show();
+        }
+    });
+
     $('#age').change(() => {
         if ($('#age').val() < 1) {
             $("#validAge").show();
@@ -156,5 +202,6 @@
         }
     });
 </script>
+
 
 </html>
