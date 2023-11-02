@@ -143,7 +143,7 @@ def swipe_gesture():
 
         return redirect(url_for('thank_you'))  # Redirect to the "Thank you" page
 
-    return render_template('thank_you.html')
+    return render_template('swipe_gesture.html')
 
 @app.route('/swipe_data', methods=['POST'])
 def handle_swipe_data():
@@ -153,8 +153,7 @@ def handle_swipe_data():
     print(data)  # Debugging statement
 
     # Your data processing code here
-
-    return "Data received and processed successfully."
+    return render_template('thank_you.html')
 
 @app.route('/thank_you')
 def thank_you():

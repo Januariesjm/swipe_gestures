@@ -9,7 +9,7 @@
     <link href="/static/css/user_info.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
-        </script>
+    </script>
 </head>
 
 <body>
@@ -60,7 +60,7 @@
                                         <div class="form-outline">
                                             <label for="hand" class="form-label"><strong>{{_('Hand')}}</strong></label>
                                             <select name="hand" id="hand" required class="form-control">
-                                                <option value="left">{{_('select option')}}</option>
+                                                <option value="0">{{_('Select Option')}}</option>
                                                 <option value="left">{{_('Left Hand')}}</option>
                                                 <option value="right">{{_('Right Hand')}}</option>
                                                 <option value="both">{{_('Both Hands')}}</option>
@@ -71,7 +71,7 @@
                                             </select>
                                             <p id="selectHand" class="invalid-feedback">
                                                 {{_('Please select an option.')}}
-                                            </p>  
+                                            </p>
                                         </div>
                                     </div>
                                     <!-- Touchscreen Device -->
@@ -80,13 +80,12 @@
                                             <label for="device" class="form-label"><strong>{{_('Touchscreen
                                                     Device')}}</strong></label>
                                             <select name="device" id="device" required class="form-control">
-                                                <option value="iphone">{{_('select option')}}</option>
+                                                <option value="0">{{_('Select Option')}}</option>
                                                 <option value="iphone">{{_('iPhone')}}</option>
                                                 <option value="android">{{_('Android')}}</option>
                                                 <option value="tablet">{{_('Tablet')}}</option>
                                                 <option value="ipad">{{_('iPad')}}</option>
                                             </select>
-
                                             <p id="selectDevice" class="invalid-feedback">
                                                 {{_('Please select an option.')}}
                                             </p>
@@ -122,6 +121,14 @@
             $("#selectGender").show();
             return;
         }
+        if ($("#hand").val() === '0') {
+            $("#selectHand").show();
+            return;
+        }
+        if ($("#device").val() === '0') {
+            $("#selectDevice").show();
+            return;
+        }
         $("#form")[0].submit();
     }
 
@@ -142,6 +149,14 @@
             $("#selectGender").show();
             return;
         }
+        if ($("#hand").val() === '0') {
+            $("#selectHand").show();
+            return;
+        }
+        if ($("#device").val() === '0') {
+            $("#selectDevice").show();
+            return;
+        }
         $("#form")[0].submit();
     });
 
@@ -160,6 +175,22 @@
         } else {
             $("#validAge").hide();
             $('input[type="submit"]').prop("disabled", false);
+        }
+    });
+
+    $('#hand').change(() => {
+        if ($('#hand').val() !== '0') {
+            $("#selectHand").hide();
+        } else {
+            $("#selectHand").show();
+        }
+    });
+
+    $('#device').change(() => {
+        if ($('#device').val() !== '0') {
+            $("#selectDevice").hide();
+        } else {
+            $("#selectDevice").show();
         }
     });
 </script>
