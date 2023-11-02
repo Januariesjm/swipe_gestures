@@ -192,7 +192,7 @@ def handle_swipe_data():
     print(data)  # Debugging statement
 
     # Your data processing code here
-    return render_template('thank_you.html', language=session.get('language', 'en'))
+    return redirect(url_for('thank_you', language=session.get('language', 'en')))
 
 @app.route('/thank_you')
 def thank_you():
