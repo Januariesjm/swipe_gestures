@@ -9,7 +9,7 @@
     <link href="/static/css/user_info.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
-    </script>
+        </script>
 </head>
 
 <body>
@@ -20,9 +20,11 @@
                     <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
                         <div class="card-body p-4 p-md-5">
                             <div style="text-align: right;">
+
                                 <!-- Language Selection -->
-                                <a href="javascript:void(0);" onclick="changeLanguage('en')">English</a> |
-                                <a href="javascript:void(0);" onclick="changeLanguage('es')">Español</a>
+                                <a href="{{ url_for('change_language', language='en') }}">English</a> |
+                                <a href="{{ url_for('change_language', language='es') }}">Español</a>
+
                             </div>
                             <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">{{_('User Information')}}</h3>
                             <form id="form" class="was-validated" action="/user_info" method="POST">
