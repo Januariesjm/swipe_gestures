@@ -21,11 +21,8 @@
                         <div class="card-body p-4 p-md-5">
                             <div style="text-align: right;">
                                 <!-- Language Selection -->
-                                {% if language=='en' %}
-                                <a href="/change_lang/es">Español</a>
-                                {% elif language=='es' %}
-                                <a href="/change_lang/en">English</a>
-                                {% endif %}
+                                <a href="javascript:void(0);" onclick="changeLanguage('en')">English</a> |
+                                <a href="javascript:void(0);" onclick="changeLanguage('es')">Español</a>
                             </div>
                             <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">{{_('User Information')}}</h3>
                             <form id="form" class="was-validated" action="/user_info" method="POST">
@@ -138,6 +135,16 @@
         handleNextButtonClick(); // Call the function to handle the button click
     });
 
+    // Function to change the language
+    function changeLanguage(language) {
+        // Set the language preference in a cookie or local storage
+        // You can implement this part using your preferred method
+        // For simplicity, we'll set it in a JavaScript variable for this example
+        var preferredLanguage = language;
+
+        // Reload the page with the selected language
+        window.location.href = "/change_lang/" + preferredLanguage;
+    }
 
     $("#form").submit(function (e) {
         e.preventDefault();
