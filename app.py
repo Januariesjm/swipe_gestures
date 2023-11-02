@@ -2,10 +2,10 @@ import os
 from decouple import config
 from datetime import timedelta
 from flask import (
-    Flask, request, session, url_for, redirect, render_template, jsonify
+    Flask, request, session, url_for, redirect, render_template, jsonify, g
 )
 import psycopg2
-from flask_babel import Babel, _, get_locale, gettext
+from flask_babel import Babel, _
 from flask_babel import lazy_gettext as _l
 
 app = Flask(__name__, template_folder="templates")
@@ -18,12 +18,24 @@ app.permanent_session_lifetime = timedelta(days=5)
 app.config['SESSION_TYPE'] = 'filesystem'
 app.config['SESSION_PERMANENT'] = True
 app.config['BABEL_DEFAULT_LOCALE'] = 'en'
+app.config['BABEL_DEFAULT_TIMEZONE'] = 'UTC'  # Set your desired timezone here
 
 babel = Babel(app)
-babel.init_app(app, locale_selector=get_locale)
+
+# Configure Babel with locale and timezone selectors
 @babel.localeselector
 def get_locale():
-    return session.get('language', 'en')
+    # Check if the user's preferred language is stored in the session
+    if 'language' in session:
+        return session['language']
+    
+    # Otherwise, use the accept_languages header to guess the language
+    return request.accept_languages.best_match(['en', 'es'])
+
+@babel.timezoneselector
+def get_timezone():
+    # Implement your logic to determine the user's timezone here, if needed
+    return 'UTC'  # Set a default timezone or determine it dynamically
 
 @app.route('/change_lang/<string:language>', methods=['GET'])
 def change_language(language):
@@ -32,7 +44,6 @@ def change_language(language):
 
     # Redirect back to the previous page or a default page
     return redirect(request.referrer or '/')
-
 @app.route('/user_info', methods=['GET', 'POST'])
 def user_info():
     # Get the selected language from the session or set a default language
