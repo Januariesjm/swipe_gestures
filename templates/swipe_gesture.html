@@ -480,6 +480,14 @@
 </form>
 <script src="../static/js/swipe-gesture.js" defer></script>
 
+<script>
+  // Disable the back button when the user navigates away
+  history.pushState(null, null, document.URL);
+  window.addEventListener('popstate', function () {
+      history.pushState(null, null, document.URL);
+  });
+</script>
+
 
       <hr class="featurette-divider">
       <!-- /END THE FEATURETTES -->
