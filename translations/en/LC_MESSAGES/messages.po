@@ -1,8 +1,3 @@
-# English translations for PROJECT.
-# Copyright (C) 2023 ORGANIZATION
-# This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
@@ -20,144 +15,121 @@ msgstr ""
 
 #: templates/intro.html:6 templates/intro.html:31
 msgid "Introduction"
-msgstr "Introducción"
+msgstr "Introduction"
 
 #: templates/intro.html:38
-msgid ""
-"We are conducting a PhD research please cooperate with us to make this "
-"research successful. We will use your anonymous data in our research and "
-"publish in a journal."
-msgstr ""
-"Estamos llevando a cabo una investigación de doctorado, por favor, coopere con nosotros para que esta "
-"investigación sea exitosa. Utilizaremos sus datos anónimos en nuestra investigación y los publicaremos en un diario."
+msgid "We are conducting a PhD research please cooperate with us to make this research successful. We will use your anonymous data in our research and publish in a journal."
+msgstr "We are conducting a PhD research. Please cooperate with us to make this research successful. We will use your anonymous data in our research and publish it in a journal."
 
 #: templates/intro.html:43
 msgid "Instructions:"
-msgstr "Instrucciones:"
+msgstr "Instructions:"
 
 #: templates/intro.html:47
-msgid ""
-"Please use keyboard keys. Do not pick up the predictive text from the "
-"suggestions of your device while typing."
-msgstr ""
-"Por favor, utilice las teclas del teclado. No tome el texto predictivo de las "
-"sugerencias de su dispositivo mientras escribe."
+msgid "Please use keyboard keys. Do not pick up the predictive text from the suggestions of your device while typing."
+msgstr "Please use keyboard keys. Do not pick up the predictive text from the suggestions of your device while typing."
 
 #: templates/intro.html:48
 msgid "Use keyboard keys separately."
-msgstr "Use las teclas del teclado por separado."
+msgstr "Use keyboard keys separately."
 
 #: templates/intro.html:51
 msgid "I accept the"
-msgstr "Acepto los"
+msgstr "I accept the"
 
 #: templates/intro.html:51
 msgid "Terms and Conditions"
-msgstr "Términos y Condiciones"
+msgstr "Terms and Conditions"
 
 #: templates/intro.html:56 templates/user_info.html:103
 msgid "Next"
-msgstr "Siguiente"
+msgstr "Next"
 
 #: templates/thank_you.html:6
 msgid "Thank You"
-msgstr "Gracias"
+msgstr "Thank You"
 
 #: templates/thank_you.html:34
 msgid "THANK YOU!"
-msgstr "¡GRACIAS!"
+msgstr "THANK YOU!"
 
 #: templates/thank_you.html:40
-msgid ""
-"It means a lot to us, just like you did! We really appreciate you giving "
-"us a\n"
-"moment of your time today."
-msgstr ""
-"¡Significa mucho para nosotros, al igual que usted! Realmente apreciamos que nos haya dedicado "
-"un\n"
-"momento de su tiempo hoy."
+msgid "It means a lot to us, just like you did! We really appreciate you giving us a moment of your time today."
+msgstr "It means a lot to us, just like you did! We really appreciate you giving us a moment of your time today."
 
 #: templates/user_info.html:6 templates/user_info.html:30
 msgid "User Information"
-msgstr "Información del Usuario"
+msgstr "User Information"
 
 #: templates/user_info.html:36
 msgid "Age"
-msgstr "Edad"
+msgstr "Age"
 
 #: templates/user_info.html:44
-msgid ""
-"Please fill out this field\n"
-"with a valid age between 0 and 99."
-msgstr ""
-"Por favor, complete este campo\n"
-"con una edad válida entre 0 y 99."
+msgid "Please fill out this field with a valid age between 0 and 99."
+msgstr "Please fill out this field with a valid age between 0 and 99."
 
 #: templates/user_info.html:53
 msgid "Gender"
-msgstr "Género"
+msgstr "Gender"
 
-#: templates/user_info.html:55 templates.user_info.html:70
+#: templates/user_info.html:55 templates/user_info.html:70
 #: templates/user_info.html:90
 msgid "Select Option"
-msgstr "Seleccionar Opción"
+msgstr "Select Option"
 
 #: templates/user_info.html:56
 msgid "Male"
-msgstr "Masculino"
+msgstr "Male"
 
 #: templates/user_info.html:57
 msgid "Female"
-msgstr "Femenino"
+msgstr "Female"
 
 #: templates/user_info.html:58
 msgid "Other"
-msgstr "Otro"
+msgstr "Other"
 
 #: templates/user_info.html:61 templates/user_info.html:80
 #: templates/user_info.html:97
 msgid "Please select an option."
-msgstr "Por favor, seleccione una opción."
+msgstr "Please select an option."
 
 #: templates/user_info.html:68
 msgid "Hand"
-msgstr "Mano"
+msgstr "Hand"
 
 #: templates/user_info.html:71
 msgid "Left Hand"
-msgstr "Mano Izquierda"
+msgstr "Left Hand"
 
 #: templates/user_info.html:72
 msgid "Right Hand"
-msgstr "Mano Derecha"
+msgstr "Right Hand"
 
 #: templates/user_info.html:73
 msgid "Both Hands"
-msgstr "Ambas Manos"
+msgstr "Both Hands"
 
 #: templates/user_info.html:74
 msgid "Right Index"
-msgstr "Dedo Índice Derecho"
+msgstr "Right Index"
 
 #: templates/user_info.html:75
 msgid "Left Index"
-msgstr "Dedo Índice Izquierdo"
+msgstr "Left Index"
 
 #: templates/user_info.html:76
 msgid "Right Thumb"
-msgstr "Pulgar Derecho"
+msgstr "Right Thumb"
 
 #: templates/user_info.html:77
 msgid "Left Thumb"
-msgstr "Pulgar Izquierdo"
+msgstr "Left Thumb"
 
 #: templates/user_info.html:87
-msgid ""
-"Touchscreen\n"
-"Device"
-msgstr ""
-"Dispositivo\n"
-"Táctil"
+msgid "Touchscreen Device"
+msgstr "Touchscreen Device"
 
 #: templates/user_info.html:91
 msgid "iPhone"
@@ -169,7 +141,7 @@ msgstr "Android"
 
 #: templates/user_info.html:93
 msgid "Tablet"
-msgstr "Tableta"
+msgstr "Tablet"
 
 #: templates/user_info.html:94
 msgid "iPad"
@@ -177,214 +149,215 @@ msgstr "iPad"
 
 #: templates/user_info.html:106
 msgid "Back"
-msgstr "Atrás"
-
+msgstr "Back"
 
 #: venv/Lib/site-packages/click/_termui_impl.py:518
 msgid "{editor}: Editing failed"
-msgstr ""
+msgstr "{editor}: Editing failed"
 
 #: venv/Lib/site-packages/click/_termui_impl.py:522
 msgid "{editor}: Editing failed: {e}"
-msgstr ""
+msgstr "{editor}: Editing failed: {e}"
 
 #: venv/Lib/site-packages/click/core.py:1120
 msgid "Aborted!"
-msgstr ""
+msgstr "Aborted!"
 
 #: venv/Lib/site-packages/click/core.py:1309
 #: venv/Lib/site-packages/click/decorators.py:559
 msgid "Show this message and exit."
-msgstr ""
+msgstr "Show this message and exit."
 
 #: venv/Lib/site-packages/click/core.py:1340
 #: venv/Lib/site-packages/click/core.py:1370
 msgid "(Deprecated) {text}"
-msgstr ""
+msgstr "(Deprecated) {text}"
 
 #: venv/Lib/site-packages/click/core.py:1387
 msgid "Options"
-msgstr ""
+msgstr "Options"
 
 #: venv/Lib/site-packages/click/core.py:1415
 msgid "Got unexpected extra argument ({args})"
 msgid_plural "Got unexpected extra arguments ({args})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Got unexpected extra argument ({args})"
+msgstr[1] "Got unexpected extra arguments ({args})"
 
 #: venv/Lib/site-packages/click/core.py:1428
 msgid "DeprecationWarning: The command {name!r} is deprecated."
-msgstr ""
+msgstr "DeprecationWarning: The command {name!r} is deprecated."
 
 #: venv/Lib/site-packages/click/core.py:1636
 msgid "Commands"
-msgstr ""
+msgstr "Commands"
 
 #: venv/Lib/site-packages/click/core.py:1668
 msgid "Missing command."
-msgstr ""
+msgstr "Missing command."
 
 #: venv/Lib/site-packages/click/core.py:1746
 msgid "No such command {name!r}."
-msgstr ""
+msgstr "No such command {name!r}."
 
 #: venv/Lib/site-packages/click/core.py:2310
 msgid "Value must be an iterable."
-msgstr ""
+msgstr "Value must be an iterable."
 
 #: venv/Lib/site-packages/click/core.py:2333
 msgid "Takes {nargs} values but 1 was given."
 msgid_plural "Takes {nargs} values but {len} were given."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Takes {nargs} values but 1 was given."
+msgstr[1] "Takes {nargs} values but {len} were given."
 
 #: venv/Lib/site-packages/click/core.py:2778
 msgid "env var: {var}"
-msgstr ""
+msgstr "env var: {var}"
 
 #: venv/Lib/site-packages/click/core.py:2808
 msgid "(dynamic)"
-msgstr ""
+msgstr "(dynamic)"
 
 #: venv/Lib/site-packages/click/core.py:2821
 msgid "default: {default}"
-msgstr ""
+msgstr "default: {default}"
 
 #: venv/Lib/site-packages/click/core.py:2834
 msgid "required"
-msgstr ""
+msgstr "required"
 
 #: venv/Lib/site-packages/click/decorators.py:465
 #, python-format
 msgid "%(prog)s, version %(version)s"
-msgstr ""
+msgstr "%(prog)s, version %(version)s"
 
 #: venv/Lib/site-packages/click/decorators.py:528
 msgid "Show the version and exit."
-msgstr ""
+msgstr "Show the version and exit."
 
 #: venv/Lib/site-packages/click/exceptions.py:44
 #: venv/Lib/site-packages/click/exceptions.py:80
 msgid "Error: {message}"
-msgstr ""
+msgstr "Error: {message}"
 
 #: venv/Lib/site-packages/click/exceptions.py:72
 msgid "Try '{command} {option}' for help."
-msgstr ""
+msgstr "Try '{command} {option}' for help."
 
 #: venv/Lib/site-packages/click/exceptions.py:121
 msgid "Invalid value: {message}"
-msgstr ""
+msgstr "Invalid value: {message}"
 
 #: venv/Lib/site-packages/click/exceptions.py:123
 msgid "Invalid value for {param_hint}: {message}"
-msgstr ""
+msgstr "Invalid value for {param_hint}: {message}"
 
 #: venv/Lib/site-packages/click/exceptions.py:179
 msgid "Missing argument"
-msgstr ""
+msgstr "Missing argument"
 
 #: venv/Lib/site-packages/click/exceptions.py:181
 msgid "Missing option"
-msgstr ""
+msgstr "Missing option"
 
 #: venv/Lib/site-packages/click/exceptions.py:183
 msgid "Missing parameter"
-msgstr ""
+msgstr "Missing parameter"
 
 #: venv/Lib/site-packages/click/exceptions.py:185
 msgid "Missing {param_type}"
-msgstr ""
+msgstr "Missing {param_type}"
 
 #: venv/Lib/site-packages/click/exceptions.py:192
 msgid "Missing parameter: {param_name}"
-msgstr ""
+msgstr "Missing parameter: {param_name}"
 
 #: venv/Lib/site-packages/click/exceptions.py:212
 msgid "No such option: {name}"
-msgstr ""
+msgstr "No such option: {name}"
 
 #: venv/Lib/site-packages/click/exceptions.py:226
 msgid "Did you mean {possibility}?"
-msgid_plural "(Possible options: {possibilities})"
-msgstr[0] ""
-msgstr[1] ""
+msgid_plural "Did you mean {possibility}?"
+msgstr[0] "Did you mean {possibility}?"
+msgstr[1] "Did you mean {possibility}?"
 
 #: venv/Lib/site-packages/click/exceptions.py:262
 msgid "unknown error"
-msgstr ""
+msgstr "unknown error"
 
 #: venv/Lib/site-packages/click/exceptions.py:269
 msgid "Could not open file {filename!r}: {message}"
-msgstr ""
+msgstr "Could not open file {filename!r}: {message}"
 
 #: venv/Lib/site-packages/click/parser.py:231
 msgid "Argument {name!r} takes {nargs} values."
-msgstr ""
+msgstr "Argument {name!r} takes {nargs} values."
 
 #: venv/Lib/site-packages/click/parser.py:413
 msgid "Option {name!r} does not take a value."
-msgstr ""
+msgstr "Option {name!r} does not take a value."
 
 #: venv/Lib/site-packages/click/parser.py:473
 msgid "Option {name!r} requires an argument."
 msgid_plural "Option {name!r} requires {nargs} arguments."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Option {name!r} requires an argument."
+msgstr[1] "Option {name!r} requires {nargs} arguments."
 
 #: venv/Lib/site-packages/click/shell_completion.py:318
 msgid "Shell completion is not supported for Bash versions older than 4.4."
-msgstr ""
+msgstr "Shell completion is not supported for Bash versions older than 4.4."
 
 #: venv/Lib/site-packages/click/shell_completion.py:326
 msgid "Couldn't detect Bash version, shell completion is not supported."
-msgstr ""
+msgstr "Couldn't detect Bash version, shell completion is not supported."
 
 #: venv/Lib/site-packages/click/termui.py:158
 msgid "Repeat for confirmation"
-msgstr ""
+msgstr "Repeat for confirmation"
 
 #: venv/Lib/site-packages/click/termui.py:174
 msgid "Error: The value you entered was invalid."
-msgstr ""
+msgstr "Error: The value you entered was invalid."
 
 #: venv/Lib/site-packages/click/termui.py:176
 msgid "Error: {e.message}"
-msgstr ""
+msgstr "Error: {e.message}"
 
 #: venv/Lib/site-packages/click/termui.py:187
 msgid "Error: The two entered values do not match."
-msgstr ""
+msgstr "Error: The two entered values do not match."
 
 #: venv/Lib/site-packages/click/termui.py:243
 msgid "Error: invalid input"
-msgstr ""
+msgstr "Error: invalid input"
 
 #: venv/Lib/site-packages/click/termui.py:773
 msgid "Press any key to continue..."
-msgstr ""
+msgstr "Press any key to continue..."
 
 #: venv/Lib/site-packages/click/types.py:266
-msgid ""
-"Choose from:\n"
-"\t{choices}"
-msgstr ""
+msgid "Choose from:\n\t{choices}"
+msgstr "Choose from:\n\t{choices}"
 
 #: venv/Lib/site-packages/click/types.py:300
 msgid "{value!r} is not {choice}."
 msgid_plural "{value!r} is not one of {choices}."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{value!r} is not {choice}."
+msgstr[1] "{value!r} is not one of {choices}."
 
 #: venv/Lib/site-packages/click/types.py:394
 msgid "{value!r} does not match the format {format}."
 msgid_plural "{value!r} does not match the formats {formats}."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{value!r} does not match the format {format}."
+msgstr[1] "{value!r} does not match the formats {formats}."
 
 #: venv/Lib/site-packages/click/types.py:414
 msgid "{value!r} is not a valid {number_type}."
-msgstr ""
+msgstr "{value!r} is not a valid {number_type}."
+
+#: venv/Lib/site-packages/click/types.py:470
+msgid "{value} is not in the range {range}."
+msgstr "{value} is not in the range {range}."
 
 #: venv/Lib/site-packages/click/types.py:470
 msgid "{value} is not in the range {range}."
