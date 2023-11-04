@@ -201,15 +201,15 @@
         }
     });
 
-        // Increment and Decrement age buttons
-        $("#incrementAge").click(function() {
+    // Increment and Decrement age buttons
+    $("#incrementAge").click(function () {
         var currentAge = parseInt($('#age').val());
         if (currentAge < 99) {
             $('#age').val(currentAge + 1);
         }
     });
 
-    $("#decrementAge").click(function() {
+    $("#decrementAge").click(function () {
         var currentAge = parseInt($('#age').val());
         if (currentAge > 0) {
             $('#age').val(currentAge - 1);
@@ -217,7 +217,7 @@
     });
 
     // Validation and feedback
-    $('#age').change(function() {
+    $('#age').change(function () {
         var currentAge = parseInt($('#age').val());
         if (currentAge < 0 || currentAge > 99) {
             $("#validAge").show();
@@ -228,8 +228,8 @@
         }
     });
 
-        // Disable the back button when the user navigates away
-        history.pushState(null, null, document.URL);
+    // Disable the back button when the user navigates away
+    history.pushState(null, null, document.URL);
     window.addEventListener('popstate', function () {
         history.pushState(null, null, document.URL);
     });
