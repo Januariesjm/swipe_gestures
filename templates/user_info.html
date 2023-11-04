@@ -34,7 +34,13 @@
                                     <div class="col-md-6 mb-4">
                                         <div class="form-outline">
                                             <label for="age" class="form-label"><strong>{{_('Age')}}</strong></label>
-                                            <input name="age" id="age" type="number" min="0" max="99" required />
+                                            <div class="input-group">
+                                                <button type="button" class="btn btn-secondary"
+                                                    id="decrementAge">-</button>
+                                                <input name="age" id="age" type="number" min="0" max="99" required />
+                                                <button type="button" class="btn btn-secondary"
+                                                    id="incrementAge">+</button>
+                                            </div>
                                             <div class="invalid-feedback" id="validAge">{{_('Please fill out this field
                                                 with a valid age between 0 and 99.')}}</div>
                                         </div>
@@ -192,6 +198,33 @@
             $("#selectDevice").hide();
         } else {
             $("#selectDevice").show();
+        }
+    });
+
+        // Increment and Decrement age buttons
+        $("#incrementAge").click(function() {
+        var currentAge = parseInt($('#age').val());
+        if (currentAge < 99) {
+            $('#age').val(currentAge + 1);
+        }
+    });
+
+    $("#decrementAge").click(function() {
+        var currentAge = parseInt($('#age').val());
+        if (currentAge > 0) {
+            $('#age').val(currentAge - 1);
+        }
+    });
+
+    // Validation and feedback
+    $('#age').change(function() {
+        var currentAge = parseInt($('#age').val());
+        if (currentAge < 0 || currentAge > 99) {
+            $("#validAge").show();
+            $('input[type="submit"]').prop("disabled", true);
+        } else {
+            $("#validAge").hide();
+            $('input[type="submit"]').prop("disabled", false);
         }
     });
 </script>
