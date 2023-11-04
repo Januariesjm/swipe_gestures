@@ -20,154 +20,165 @@ msgstr ""
 
 #: templates/intro.html:6 templates/intro.html:31
 msgid "Introduction"
-msgstr ""
+msgstr "Introducción"
 
 #: templates/intro.html:38
 msgid ""
 "We are conducting a PhD research please cooperate with us to make this "
 "research successful. We will use your anonymous data in our research and "
-"publish in journal."
+"publish in a journal."
 msgstr ""
+"Estamos llevando a cabo una investigación de doctorado, por favor, coopere con nosotros para que esta "
+"investigación sea exitosa. Utilizaremos sus datos anónimos en nuestra investigación y los publicaremos en un diario."
 
 #: templates/intro.html:43
 msgid "Instructions:"
-msgstr ""
+msgstr "Instrucciones:"
 
 #: templates/intro.html:47
 msgid ""
 "Please use keyboard keys. Do not pick up the predictive text from the "
 "suggestions of your device while typing."
 msgstr ""
+"Por favor, utilice las teclas del teclado. No tome el texto predictivo de las "
+"sugerencias de su dispositivo mientras escribe."
 
 #: templates/intro.html:48
 msgid "Use keyboard keys separately."
-msgstr ""
+msgstr "Use las teclas del teclado por separado."
 
 #: templates/intro.html:51
 msgid "I accept the"
-msgstr ""
+msgstr "Acepto los"
 
 #: templates/intro.html:51
 msgid "Terms and Conditions"
-msgstr ""
+msgstr "Términos y Condiciones"
 
 #: templates/intro.html:56 templates/user_info.html:103
 msgid "Next"
-msgstr ""
+msgstr "Siguiente"
 
 #: templates/thank_you.html:6
 msgid "Thank You"
-msgstr ""
+msgstr "Gracias"
 
 #: templates/thank_you.html:34
 msgid "THANK YOU!"
-msgstr ""
+msgstr "¡GRACIAS!"
 
 #: templates/thank_you.html:40
 msgid ""
 "It means a lot to us, just like you did! We really appreciate you giving "
 "us a\n"
-"                                    moment of your time today."
+"moment of your time today."
 msgstr ""
+"¡Significa mucho para nosotros, al igual que usted! Realmente apreciamos que nos haya dedicado "
+"un\n"
+"momento de su tiempo hoy."
 
 #: templates/user_info.html:6 templates/user_info.html:30
 msgid "User Information"
-msgstr ""
+msgstr "Información del Usuario"
 
 #: templates/user_info.html:36
 msgid "Age"
-msgstr ""
+msgstr "Edad"
 
 #: templates/user_info.html:44
 msgid ""
 "Please fill out this field\n"
-"                                                with a valid age between "
-"0 and 99."
+"with a valid age between 0 and 99."
 msgstr ""
+"Por favor, complete este campo\n"
+"con una edad válida entre 0 y 99."
 
 #: templates/user_info.html:53
 msgid "Gender"
-msgstr ""
+msgstr "Género"
 
-#: templates/user_info.html:55 templates/user_info.html:70
+#: templates/user_info.html:55 templates.user_info.html:70
 #: templates/user_info.html:90
 msgid "Select Option"
-msgstr ""
+msgstr "Seleccionar Opción"
 
 #: templates/user_info.html:56
 msgid "Male"
-msgstr ""
+msgstr "Masculino"
 
 #: templates/user_info.html:57
 msgid "Female"
-msgstr ""
+msgstr "Femenino"
 
 #: templates/user_info.html:58
 msgid "Other"
-msgstr ""
+msgstr "Otro"
 
 #: templates/user_info.html:61 templates/user_info.html:80
 #: templates/user_info.html:97
 msgid "Please select an option."
-msgstr ""
+msgstr "Por favor, seleccione una opción."
 
 #: templates/user_info.html:68
 msgid "Hand"
-msgstr ""
+msgstr "Mano"
 
 #: templates/user_info.html:71
 msgid "Left Hand"
-msgstr ""
+msgstr "Mano Izquierda"
 
 #: templates/user_info.html:72
 msgid "Right Hand"
-msgstr ""
+msgstr "Mano Derecha"
 
 #: templates/user_info.html:73
 msgid "Both Hands"
-msgstr ""
+msgstr "Ambas Manos"
 
 #: templates/user_info.html:74
 msgid "Right Index"
-msgstr ""
+msgstr "Dedo Índice Derecho"
 
 #: templates/user_info.html:75
 msgid "Left Index"
-msgstr ""
+msgstr "Dedo Índice Izquierdo"
 
 #: templates/user_info.html:76
 msgid "Right Thumb"
-msgstr ""
+msgstr "Pulgar Derecho"
 
 #: templates/user_info.html:77
 msgid "Left Thumb"
-msgstr ""
+msgstr "Pulgar Izquierdo"
 
 #: templates/user_info.html:87
 msgid ""
 "Touchscreen\n"
-"                                                    Device"
+"Device"
 msgstr ""
+"Dispositivo\n"
+"Táctil"
 
 #: templates/user_info.html:91
 msgid "iPhone"
-msgstr ""
+msgstr "iPhone"
 
 #: templates/user_info.html:92
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #: templates/user_info.html:93
 msgid "Tablet"
-msgstr ""
+msgstr "Tableta"
 
 #: templates/user_info.html:94
 msgid "iPad"
-msgstr ""
+msgstr "iPad"
 
 #: templates/user_info.html:106
 msgid "Back"
-msgstr ""
+msgstr "Atrás"
+
 
 #: venv/Lib/site-packages/click/_termui_impl.py:518
 msgid "{editor}: Editing failed"
