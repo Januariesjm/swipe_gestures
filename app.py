@@ -49,10 +49,6 @@ def get_locale():
 def get_timezone():
     return 'UTC'  # You can set a default timezone or determine it dynamically
 
-@app.route('/change_lang/<string:language>', methods=['GET'])
-def change_language(language):
-    session['language'] = language
-    return redirect(request.referrer or '/')
 
 @app.route('/user_info', methods=['GET', 'POST'])
 def user_info():
@@ -96,7 +92,11 @@ def user_info():
         session.pop('user_id', None)
         return render_template('user_info.html', language=language, session=session, locale=locale)
 
-
+@app.route('/change_language/<language>', methods=['GET'])
+def change_language(language):
+    if language == 'en' or language == 'es':
+        session['locale'] = language
+    return redirect(request.referrer)
 @app.route('/swipe_gesture', methods=['GET', 'POST'])
 def swipe_gesture():
     # Get the selected language from the session or set a default language
