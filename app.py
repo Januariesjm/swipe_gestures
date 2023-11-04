@@ -66,6 +66,9 @@ def user_info():
             hand = request.form['hand']
             device = request.form['device']
 
+            # Ensure age is within the range of 0 to 99
+            age = max(0, min(99, int(age)))
+
             conn = psycopg2.connect(DATABASE_URL)
             cur = conn.cursor()
 
