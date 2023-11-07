@@ -49,6 +49,17 @@ def get_locale():
 def get_timezone():
     return 'UTC'  # You can set a default timezone or determine it dynamically
 
+# Import statements (existing imports)
+
+@app.route('/', methods=['GET', 'POST'])
+def intro():
+    language = session.get('language', 'en')
+
+    if request.method == 'POST':
+        return redirect(url_for('user_info'))
+
+    return render_template('intro.html', language=language)
+
 
 @app.route('/user_info', methods=['GET', 'POST'])
 def user_info():
