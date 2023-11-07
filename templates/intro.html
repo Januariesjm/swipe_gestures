@@ -22,11 +22,12 @@
                     <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
                         <div class="card-body p-4 p-md-5">
                             <div style align="right">
-                                <!-- Simple link -->
-                                {% if language=='en' %} <a href="/change_lang/es">Español</a>
-                                {% elif language=='es' %} <a href="/change_lang/en">English</a>
-                                {% endif %}
-
+                                  <!-- Language Selection -->
+                                  {% if get_locale() == 'en' %}
+                                  <a href="{{ url_for('change_language', language='es') }}">Español</a>
+                                  {% elif get_locale() == 'es' %}
+                                  <a href="{{ url_for('change_language', language='en') }}">English</a>
+                                  {% endif %}
                             </div>
                             <h3 class="mb-4 pb-2 pb-md-0">{{ _('Introduction') }}</h3>
                             
