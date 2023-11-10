@@ -85,7 +85,7 @@ def user_info():
 
             # Ensure age is within the range of 0 to 99
             age = max(0, min(99, int(age)))
-            conn = psycopg2.connect('DATABASE_URL')
+            conn = psycopg2.connect(DATABASE_URL)
 
             #conn = psycopg2.connect(
             #database=DATABASE_NAME,
@@ -193,7 +193,7 @@ def swipe_gesture():
         user_id = session['user_id']
 
         # Store the swipe gesture data in the database
-        conn = psycopg2.connect('DATABASE_URL')
+        conn = psycopg2.connect(DATABASE_URL)
         #conn = psycopg2.connect(
            # database=DATABASE_NAME,
            # user=DATABASE_USER,
@@ -259,7 +259,7 @@ def handle_swipe_data_real_time():
         grasp = float(request.form.get('grasp', 0.0)) if request.form.get('grasp') else 0.0
 
         # Now, you can perform database insertion or any other processing with the received data
-        conn = psycopg2.connect('DATABASE_URL')
+        conn = psycopg2.connect(DATABASE_URL)
         #conn = psycopg2.connect(
             #database=DATABASE_NAME,
             #user=DATABASE_USER,
