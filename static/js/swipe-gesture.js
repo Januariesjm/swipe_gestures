@@ -6,8 +6,6 @@ let zoomOutStartX = 0;
 let zoomOutStartY = 0;
 let zoomOutStartTime = 0;
 
-// ... Other variable declarations ...
-
 // Function to handle touch start for zoom in
 function handleTouchStartZoomIn(event) {
   zoomInStartX = event.touches[0].clientX;
@@ -31,12 +29,7 @@ function handleTouchEndZoomIn(event) {
 
     if (swipeDistanceX > 0 && swipeDistanceY > 0) {
       // It's a zoom in gesture
-      document.getElementById('zoomIn').value = 1;
-      document.getElementById('zoomOut').value = 0;
-      document.getElementById('swipeWidth').value = Math.sqrt(swipeDistanceX * swipeDistanceX + swipeDistanceY * swipeDistanceY);
-      document.getElementById('swipingRepetitionsX').value = swipeDistanceX;
-      document.getElementById('swipingRepetitionsY').value = swipeDistanceY;
-      document.getElementById('totalTimeTaken').value = zoomInTime;
+      updateSwipeData(1, 0, swipeDistanceX, swipeDistanceY, zoomInTime);
     }
   }
 }
@@ -64,46 +57,67 @@ function handleTouchEndZoomOut(event) {
 
     if (swipeDistanceX < 0 && swipeDistanceY < 0) {
       // It's a zoom out gesture
-      document.getElementById('zoomIn').value = 0;
-      document.getElementById('zoomOut').value = 1;
-      document.getElementById('swipeWidth').value = Math.sqrt(swipeDistanceX * swipeDistanceX + swipeDistanceY * swipeDistanceY);
-      document.getElementById('swipingRepetitionsX').value = swipeDistanceX;
-      document.getElementById('swipingRepetitionsY').value = swipeDistanceY;
-      document.getElementById('totalTimeTaken').value = zoomOutTime;
+      updateSwipeData(0, 1, swipeDistanceX, swipeDistanceY, zoomOutTime);
     }
   }
 }
 
-// ... Continue with other functions and event listeners ...
-
-// Form submission
-const swipeForm = document.getElementById('swipeForm');
-swipeForm.addEventListener('submit', (event) => {
-  event.preventDefault(); // Prevent the default form submission
+// Function to update hidden form fields with swipe gesture data
+function updateSwipeData(zoomIn, zoomOut, swipeDistanceX, swipeDistanceY, totalTimeTaken) {
+  document.getElementById('zoomIn').value = zoomIn;
+  document.getElementById('zoomOut').value = zoomOut;
+  document.getElementById('swipeWidth').value = Math.sqrt(swipeDistanceX * swipeDistanceX + swipeDistanceY * swipeDistanceY);
+  document.getElementById('swipingRepetitionsX').value = swipeDistanceX;
+  document.getElementById('swipingRepetitionsY').value = swipeDistanceY;
+  document.getElementById('totalTimeTaken').value = totalTimeTaken;
 
   // You can send this data to the server using JavaScript fetch or XMLHttpRequest
   // Example using fetch:
-  fetch('/swipe_gesture', {
+  fetch('/swipe_data', {
     method: 'POST',
-    body: new FormData(swipeForm), // Automatically includes all form fields
+    body: new FormData(document.getElementById('swipeForm')), // Automatically includes all form fields
   })
     .then(response => {
       if (response.ok) {
-        // Handle a successful response, e.g., show a success message
-        const successMessage = document.getElementById('successMessage');
-        successMessage.style.display = 'block'; // Display the message
-
-        // Redirect to the "thank_you" page
-        window.location.href = '/thank_you';
-
-        console.log('Data submitted successfully.');
+        console.log('Swipe data sent successfully.');
       } else {
-        // Handle errors if the server responds with an error
-        console.error('Error submitting data.');
+        console.error('Error sending swipe data.');
       }
     })
     .catch(error => {
-      // Handle network errors or other issues
       console.error('Network error:', error);
     });
+}
+
+// Add event listeners for touch start and touch end
+document.addEventListener('touchstart', (event) => {
+  handleTouchStartZoomIn(event);
+  handleTouchStartZoomOut(event);
 });
+
+document.addEventListener('touchend', (event) => {
+  handleTouchEndZoomIn(event);
+  handleTouchEndZoomOut(event);
+});
+
+fetch('/swipe_data', {
+  method: 'POST',
+  body: new FormData(document.getElementById('swipeForm')), // Automatically includes all form fields
+})
+  .then(response => response.json())
+  .then(data => {
+    if (data.status === 'success') {
+      // Handle success, e.g., show a success message
+      console.log('Swipe data sent successfully:', data.message);
+      const successMessage = document.getElementById('successMessage');
+      successMessage.style.display = 'block'; // Display the message
+
+    } else {
+      // Handle errors if the server responds with an error
+      console.error('Error processing swipe data:', data.message);
+    }
+  })
+  .catch(error => {
+    // Handle network errors or other issues
+    console.error('Network error:', error);
+  });

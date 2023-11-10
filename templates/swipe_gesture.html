@@ -481,6 +481,10 @@
 <script src="../static/js/swipe-gesture.js" defer></script>
 
 <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    setupSwipeListeners();
+  });
+
   // Disable the back button when the user navigates away
   history.pushState(null, null, document.URL);
   window.addEventListener('popstate', function () {
