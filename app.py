@@ -19,7 +19,7 @@ DATABASE_HOST = config('DATABASE_HOST')
 DATABASE_PORT = config('DATABASE_PORT')
 SECRET_KEY = config('SECRET_KEY')
 
-# DATABASE_URL = os.environ.get("DATABASE_URL")
+DATABASE_URL = os.environ.get("DATABASE_URL")
 SECRET_KEY = config('SECRET_KEY')
 
 app.config['SECRET_KEY'] = SECRET_KEY
@@ -85,14 +85,15 @@ def user_info():
 
             # Ensure age is within the range of 0 to 99
             age = max(0, min(99, int(age)))
+            conn = psycopg2.connect('DATABASE_URL')
 
-            conn = psycopg2.connect(
-            database=DATABASE_NAME,
-            user=DATABASE_USER,
-            password=DATABASE_PASSWORD,
-            host=DATABASE_HOST,
-            port=DATABASE_PORT
-            )
+            #conn = psycopg2.connect(
+            #database=DATABASE_NAME,
+            #user=DATABASE_USER,
+            #password=DATABASE_PASSWORD,
+            #host=DATABASE_HOST,
+            #port=DATABASE_PORT
+            #)
             cur = conn.cursor()
 
             cur.execute(
@@ -192,13 +193,14 @@ def swipe_gesture():
         user_id = session['user_id']
 
         # Store the swipe gesture data in the database
-        conn = psycopg2.connect(
-            database=DATABASE_NAME,
-            user=DATABASE_USER,
-            password=DATABASE_PASSWORD,
-            host=DATABASE_HOST,
-            port=DATABASE_PORT
-        )
+        conn = psycopg2.connect('DATABASE_URL')
+        #conn = psycopg2.connect(
+           # database=DATABASE_NAME,
+           # user=DATABASE_USER,
+           # password=DATABASE_PASSWORD,
+           # host=DATABASE_HOST,
+           # port=DATABASE_PORT
+        #)
         cur = conn.cursor()
 
         cur.execute("""
@@ -257,13 +259,14 @@ def handle_swipe_data_real_time():
         grasp = float(request.form.get('grasp', 0.0)) if request.form.get('grasp') else 0.0
 
         # Now, you can perform database insertion or any other processing with the received data
-        conn = psycopg2.connect(
-            database=DATABASE_NAME,
-            user=DATABASE_USER,
-            password=DATABASE_PASSWORD,
-            host=DATABASE_HOST,
-            port=DATABASE_PORT
-        )
+        conn = psycopg2.connect('DATABASE_URL')
+        #conn = psycopg2.connect(
+            #database=DATABASE_NAME,
+            #user=DATABASE_USER,
+           # password=DATABASE_PASSWORD,
+           # host=DATABASE_HOST,
+           # port=DATABASE_PORT
+        #)
         cur = conn.cursor()
 
         cur.execute("""
