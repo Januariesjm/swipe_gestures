@@ -100,6 +100,65 @@
                                             </p>
                                         </div>
                                     </div>
+
+                                    <!-- ... (existing code) -->
+
+                                    <!-- Add the new fields for GRASP, DEVICE ORIENTATION, and HAND MOVEMENT -->
+                                    <!-- GRASP -->
+                                    <div class="col-md-6 mb-4">
+                                        <div class="form-outline">
+                                            <label for="grasp"
+                                                class="form-label"><strong>{{_('GRASP')}}</strong></label>
+                                            <select name="grasp" id="grasp" required class="form-control">
+                                                <option value="0">{{_('Select Option')}}</option>
+                                                <option value="left">{{_('Left')}}</option>
+                                                <option value="both">{{_('Both')}}</option>
+                                                <option value="right">{{_('Right')}}</option>
+                                                <option value="no_grasp">{{_('No Grasp')}}</option>
+                                            </select>
+                                            <p id="selectGrasp" class="invalid-feedback">
+                                                {{_('Please select a grasp option.')}}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <!-- DEVICE ORIENTATION -->
+                                    <div class="col-md-6 mb-4">
+                                        <div class="form-outline">
+                                            <label for="orientation" class="form-label"><strong>{{_('Device
+                                                    Orientation')}}</strong></label>
+                                            <select name="orientation" id="orientation" required class="form-control">
+                                                <option value="0">{{_('Select Option')}}</option>
+                                                <option value="landscape">{{_('Landscape')}}</option>
+                                                <option value="portrait">{{_('Portrait')}}</option>
+                                            </select>
+                                            <p id="selectOrientation" class="invalid-feedback">
+                                                {{_('Please select a device orientation option.')}}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <!-- HAND MOVEMENT -->
+                                    <div class="col-md-6 mb-4">
+                                        <div class="form-outline">
+                                            <label for="hand_movement" class="form-label"><strong>{{_('Hand
+                                                    Movement')}}</strong></label>
+                                            <select name="hand_movement" id="hand_movement" required
+                                                class="form-control">
+                                                <option value="0">{{_('Select Option')}}</option>
+                                                <option value="right">{{_('Right Hand')}}</option>
+                                                <option value="left">{{_('Left Hand')}}</option>
+                                                <option value="both">{{_('Both Hands')}}</option>
+                                            </select>
+                                            <p id="selectHandMovement" class="invalid-feedback">
+                                                {{_('Please select a hand movement option.')}}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <!-- ... (existing code) -->
+
+
                                     <div>
                                         <input id="nextButton" class="btn btn-primary btn-lg" type="submit"
                                             value="{{_('Next')}}" style="float: right;" />

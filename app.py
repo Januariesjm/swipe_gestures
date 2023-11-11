@@ -70,7 +70,7 @@ def intro():
 
     return render_template('intro.html', language=language)
 
-
+# Add the GRASP, DEVICE ORIENTATION, and HAND MOVEMENT features
 @app.route('/user_info', methods=['GET', 'POST'])
 def user_info():
     language = session.get('language', 'en')
@@ -82,23 +82,19 @@ def user_info():
             gender = request.form['gender']
             hand = request.form['hand']
             device = request.form['device']
+            grasp = request.form['grasp']  # Add GRASP
+            orientation = request.form['orientation']  # Add DEVICE ORIENTATION
+            hand_movement = request.form['hand_movement']  # Add HAND MOVEMENT
 
             # Ensure age is within the range of 0 to 99
             age = max(0, min(99, int(age)))
             conn = psycopg2.connect(DATABASE_URL)
-
-            #conn = psycopg2.connect(
-            #database=DATABASE_NAME,
-            #user=DATABASE_USER,
-            #password=DATABASE_PASSWORD,
-            #host=DATABASE_HOST,
-            #port=DATABASE_PORT
-            #)
             cur = conn.cursor()
 
             cur.execute(
-                """INSERT INTO user_info(age, gender, hand, touchscreen_device) VALUES(%s, %s, %s, %s)""",
-                (age, gender, hand, device)
+                """INSERT INTO user_info(age, gender, hand, touchscreen_device, grasp, orientation, hand_movement) 
+                VALUES(%s, %s, %s, %s, %s, %s, %s)""",
+                (age, gender, hand, device, grasp, orientation, hand_movement)
             )
             conn.commit()
 
@@ -113,6 +109,9 @@ def user_info():
             session['gender'] = gender
             session['hand'] = hand
             session['device'] = device
+            session['grasp'] = grasp
+            session['orientation'] = orientation
+            session['hand_movement'] = hand_movement
 
             return redirect(url_for("swipe_gesture"))
         return render_template('user_info.html', language=language, locale=locale)
@@ -254,6 +253,8 @@ def handle_swipe_data_real_time():
         max_swipe_speed = float(request.form.get('max_swipe_speed', 0.0)) if request.form.get('max_swipe_speed') else 0.0
         min_swipe_speed = float(request.form.get('min_swipe_speed', 0.0)) if request.form.get('min_swipe_speed') else 0.0
         finger_size = float(request.form.get('finger_size', 0.0)) if request.form.get('finger_size') else 0.0
+        
+
         hand_movement = float(request.form.get('hand_movement', 0.0)) if request.form.get('hand_movement') else 0.0
         device_orientation = float(request.form.get('device_orientation', 0.0)) if request.form.get('device_orientation') else 0.0
         grasp = float(request.form.get('grasp', 0.0)) if request.form.get('grasp') else 0.0
