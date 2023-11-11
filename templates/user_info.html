@@ -181,23 +181,66 @@
 <script>
     // Function to handle the "Next" button click
     function handleNextButtonClick() {
+        var valid = true;
+
+        // Age validation
         if ($('#age').val() < 1) {
             $("#validAge").show();
-            return;
+            valid = false;
+        } else {
+            $("#validAge").hide();
         }
+
+        // Gender validation
         if ($("#gender").val() === '0') {
             $("#selectGender").show();
-            return;
+            valid = false;
+        } else {
+            $("#selectGender").hide();
         }
+
+        // Hand validation
         if ($("#hand").val() === '0') {
             $("#selectHand").show();
-            return;
+            valid = false;
+        } else {
+            $("#selectHand").hide();
         }
+
+        // Device validation
         if ($("#device").val() === '0') {
             $("#selectDevice").show();
-            return;
+            valid = false;
+        } else {
+            $("#selectDevice").hide();
         }
-        $("#form")[0].submit();
+
+        // New fields validation
+        if ($("#grasp").val() === '0') {
+            $("#selectGrasp").show();
+            valid = false;
+        } else {
+            $("#selectGrasp").hide();
+        }
+
+        if ($("#orientation").val() === '0') {
+            $("#selectOrientation").show();
+            valid = false;
+        } else {
+            $("#selectOrientation").hide();
+        }
+
+        if ($("#hand_movement").val() === '0') {
+            $("#selectHandMovement").show();
+            valid = false;
+        } else {
+            $("#selectHandMovement").hide();
+        }
+
+        // Submit the form if all validations pass
+        if (valid) {
+            $("#form")[0].submit();
+        }
     }
 
     // Attach the click event handler to the "Next" button
@@ -205,7 +248,6 @@
         e.preventDefault(); // Prevent the default form submission
         handleNextButtonClick(); // Call the function to handle the button click
     });
-
 
     $("#form").submit(function (e) {
         e.preventDefault();
