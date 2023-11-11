@@ -225,6 +225,20 @@
             $("#selectDevice").show();
             return;
         }
+
+        // New fields validation
+        if ($("#grasp").val() === '0') {
+            $("#selectGrasp").show();
+            return;
+        }
+        if ($("#orientation").val() === '0') {
+            $("#selectOrientation").show();
+            return;
+        }
+        if ($("#hand_movement").val() === '0') {
+            $("#selectHandMovement").show();
+            return;
+        }
         $("#form")[0].submit();
     });
 
