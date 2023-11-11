@@ -154,9 +154,6 @@ def swipe_gesture():
         max_swipe_speed = 0.0
         min_swipe_speed = 0.0
         finger_size = 0.0
-        hand_movement = 0.0
-        device_orientation = 0.0
-        grasp = 0.0
 
         try:
             # Extract swipe gesture data from form fields
@@ -179,9 +176,7 @@ def swipe_gesture():
             max_swipe_speed = float(request.form.get('max_swipe_speed', 0.0))
             min_swipe_speed = float(request.form.get('min_swipe_speed', 0.0))
             finger_size = float(request.form.get('finger_size', 0.0))
-            hand_movement = float(request.form.get('hand_movement', 0.0))
-            device_orientation = float(request.form.get('device_orientation', 0.0))
-            grasp = float(request.form.get('grasp', 0.0))
+
 
 
         except ValueError:
@@ -207,14 +202,14 @@ def swipe_gesture():
                 user_id, left_to_right, right_to_left, scroll_up, scroll_down, zoom_in, zoom_out, swipe_width,
                 swiping_repetitions_x_coordinate, swiping_repetitions_y_coordinate, total_number_of_clicks,
                 x_coordinate_clicks, y_coordinate_clicks, total_time_taken, velocity, device_screen_width,
-                max_swipe_speed, min_swipe_speed, finger_size, hand_movement, device_orientation, grasp
+                max_swipe_speed, min_swipe_speed, finger_size
             )
             VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """, (
             user_id, left_to_right, right_to_left, scroll_up, scroll_down, zoom_in, zoom_out, swipe_width,
             swiping_repetitions_x_coordinate, swiping_repetitions_y_coordinate, total_number_of_clicks,
             x_coordinate_clicks, y_coordinate_clicks, total_time_taken, velocity, device_screen_width,
-            max_swipe_speed, min_swipe_speed, finger_size, hand_movement, device_orientation, grasp
+            max_swipe_speed, min_swipe_speed, finger_size
         ))
 
         conn.commit()
@@ -253,11 +248,6 @@ def handle_swipe_data_real_time():
         max_swipe_speed = float(request.form.get('max_swipe_speed', 0.0)) if request.form.get('max_swipe_speed') else 0.0
         min_swipe_speed = float(request.form.get('min_swipe_speed', 0.0)) if request.form.get('min_swipe_speed') else 0.0
         finger_size = float(request.form.get('finger_size', 0.0)) if request.form.get('finger_size') else 0.0
-        
-
-        hand_movement = float(request.form.get('hand_movement', 0.0)) if request.form.get('hand_movement') else 0.0
-        device_orientation = float(request.form.get('device_orientation', 0.0)) if request.form.get('device_orientation') else 0.0
-        grasp = float(request.form.get('grasp', 0.0)) if request.form.get('grasp') else 0.0
 
         # Now, you can perform database insertion or any other processing with the received data
         conn = psycopg2.connect(DATABASE_URL)
@@ -275,14 +265,14 @@ def handle_swipe_data_real_time():
                 user_id, left_to_right, right_to_left, scroll_up, scroll_down, zoom_in, zoom_out, swipe_width,
                 swiping_repetitions_x_coordinate, swiping_repetitions_y_coordinate, total_number_of_clicks,
                 x_coordinate_clicks, y_coordinate_clicks, total_time_taken, velocity, device_screen_width,
-                max_swipe_speed, min_swipe_speed, finger_size, hand_movement, device_orientation, grasp
+                max_swipe_speed, min_swipe_speed, finger_size
             )
             VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """, (
             user_id, left_to_right, right_to_left, scroll_up, scroll_down, zoom_in, zoom_out, swipe_width,
             swiping_repetitions_x_coordinate, swiping_repetitions_y_coordinate, total_number_of_clicks,
             x_coordinate_clicks, y_coordinate_clicks, total_time_taken, velocity, device_screen_width,
-            max_swipe_speed, min_swipe_speed, finger_size, hand_movement, device_orientation, grasp
+            max_swipe_speed, min_swipe_speed, finger_size
         ))
 
         conn.commit()
