@@ -176,9 +176,6 @@ def swipe_gesture():
             max_swipe_speed = float(request.form.get('max_swipe_speed', 0.0))
             min_swipe_speed = float(request.form.get('min_swipe_speed', 0.0))
             finger_size = float(request.form.get('finger_size', 0.0))
-
-
-
         except ValueError:
             # Handle cases where form fields are not integers
             pass
@@ -204,7 +201,7 @@ def swipe_gesture():
                 x_coordinate_clicks, y_coordinate_clicks, total_time_taken, velocity, device_screen_width,
                 max_swipe_speed, min_swipe_speed, finger_size
             )
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """, (
             user_id, left_to_right, right_to_left, scroll_up, scroll_down, zoom_in, zoom_out, swipe_width,
             swiping_repetitions_x_coordinate, swiping_repetitions_y_coordinate, total_number_of_clicks,
@@ -267,7 +264,7 @@ def handle_swipe_data_real_time():
                 x_coordinate_clicks, y_coordinate_clicks, total_time_taken, velocity, device_screen_width,
                 max_swipe_speed, min_swipe_speed, finger_size
             )
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """, (
             user_id, left_to_right, right_to_left, scroll_up, scroll_down, zoom_in, zoom_out, swipe_width,
             swiping_repetitions_x_coordinate, swiping_repetitions_y_coordinate, total_number_of_clicks,
