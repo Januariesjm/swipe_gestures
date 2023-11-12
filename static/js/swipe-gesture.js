@@ -1,3 +1,11 @@
+// Variables to track zoom in and zoom out
+let zoomInStartX = 0;
+let zoomInStartY = 0;
+let zoomInStartTime = 0;
+let zoomOutStartX = 0;
+let zoomOutStartY = 0;
+let zoomOutStartTime = 0;
+
 // Variables to track left-to-right and right-to-left swipes
 let leftToRightStartX = 0;
 let leftToRightStartY = 0;
@@ -13,6 +21,7 @@ let scrollUpStartTime = 0;
 let scrollDownStartX = 0;
 let scrollDownStartY = 0;
 let scrollDownStartTime = 0;
+
 
 // Function to handle touch start for left-to-right swipe
 function handleTouchStartLeftToRight(event) {
@@ -145,6 +154,70 @@ document.addEventListener('touchend', (event) => {
   handleTouchEndScrollDown(event);
 });
 
+// Function to handle touch start for zoom in
+function handleTouchStartZoomIn(event) {
+  zoomInStartX = event.touches[0].clientX;
+  zoomInStartY = event.touches[0].clientY;
+  zoomInStartTime = new Date().getTime();
+}
+
+// Function to handle touch end for zoom in
+function handleTouchEndZoomIn(event) {
+  if (zoomInStartX !== 0 && zoomInStartY !== 0) {
+    const zoomInEndX = event.changedTouches[0].clientX;
+    const zoomInEndY = event.changedTouches[0].clientY;
+    const zoomInEndTime = new Date().getTime();
+
+    // Calculate the distance swiped in X and Y directions for zoom in
+    const swipeDistanceX = zoomInEndX - zoomInStartX;
+    const swipeDistanceY = zoomInEndY - zoomInStartY;
+
+    // Calculate the time taken for the zoom in gesture in milliseconds
+    const zoomInTime = zoomInEndTime - zoomInStartTime;
+
+    if (swipeDistanceX > 0 && swipeDistanceY > 0) {
+      // It's a zoom in gesture
+      updateSwipeData(1, 0, swipeDistanceX, swipeDistanceY, zoomInTime);
+    }
+  }
+}
+
+// Function to handle touch start for zoom out
+function handleTouchStartZoomOut(event) {
+  zoomOutStartX = event.touches[0].clientX;
+  zoomOutStartY = event.touches[0].clientY;
+  zoomOutStartTime = new Date().getTime();
+}
+
+// Function to handle touch end for zoom out
+function handleTouchEndZoomOut(event) {
+  if (zoomOutStartX !== 0 && zoomOutStartY !== 0) {
+    const zoomOutEndX = event.changedTouches[0].clientX;
+    const zoomOutEndY = event.changedTouches[0].clientY;
+    const zoomOutEndTime = new Date().getTime();
+
+    // Calculate the distance swiped in X and Y directions for zoom out
+    const swipeDistanceX = zoomOutEndX - zoomOutStartX;
+    const swipeDistanceY = zoomOutEndY - zoomOutStartY;
+
+    // Calculate the time taken for the zoom out gesture in milliseconds
+    const zoomOutTime = zoomOutEndTime - zoomOutStartTime;
+
+    if (swipeDistanceX < 0 && swipeDistanceY < 0) {
+      // It's a zoom out gesture
+      updateSwipeData(0, 1, swipeDistanceX, swipeDistanceY, zoomOutTime);
+    }
+  }
+}
+
+// Function to update hidden form fields with swipe gesture data
+function updateSwipeData(zoomIn, zoomOut, swipeDistanceX, swipeDistanceY, totalTimeTaken) {
+  document.getElementById('zoomIn').value = zoomIn;
+  document.getElementById('zoomOut').value = zoomOut;
+  document.getElementById('swipeWidth').value = Math.sqrt(swipeDistanceX * swipeDistanceX + swipeDistanceY * swipeDistanceY);
+  document.getElementById('swipingRepetitionsX').value = swipeDistanceX;
+  document.getElementById('swipingRepetitionsY').value = swipeDistanceY;
+  document.getElementById('totalTimeTaken').value = totalTimeTaken;
 
   // You can send this data to the server using JavaScript fetch or XMLHttpRequest
   // Example using fetch:
@@ -162,7 +235,19 @@ document.addEventListener('touchend', (event) => {
     .catch(error => {
       console.error('Network error:', error);
     });
-    
+}
+
+// Add event listeners for touch start and touch end
+document.addEventListener('touchstart', (event) => {
+  handleTouchStartZoomIn(event);
+  handleTouchStartZoomOut(event);
+});
+
+document.addEventListener('touchend', (event) => {
+  handleTouchEndZoomIn(event);
+  handleTouchEndZoomOut(event);
+});
+
 fetch('/swipe_data', {
   method: 'POST',
   body: new FormData(document.getElementById('swipeForm')), // Automatically includes all form fields
