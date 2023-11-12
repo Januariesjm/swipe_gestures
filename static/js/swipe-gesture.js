@@ -103,10 +103,12 @@ function handleTouchEndRightToLeft(event) {
 
 // Add event listeners for touch start and touch end
 document.addEventListener('touchstart', (event) => {
+  // ... (Your existing code)
   handleTouchStartRightToLeft(event);
 });
 
 document.addEventListener('touchend', (event) => {
+  // ... (Your existing code)
   handleTouchEndRightToLeft(event);
 });
 
