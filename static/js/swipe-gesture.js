@@ -146,12 +146,12 @@ function handleTouchEndScrollUp(event) {
     const scrollUpEndTime = new Date().getTime();
 
     // Calculate the distance swiped in Y direction for scroll up
-    const swipeDistanceY = scrollUpEndY - scrollUpStartY;
+    const swipeDistanceY = scrollUpStartY - scrollUpEndY;
 
     // Calculate the time taken for the scroll up gesture in milliseconds
     const scrollUpTime = scrollUpEndTime - scrollUpStartTime;
 
-    if (swipeDistanceY < 0) {
+    if (swipeDistanceY > 0) {
       // It's a scroll up gesture
       updateSwipeData(0, 0, 0, swipeDistanceY, scrollUpTime);
     }
@@ -175,7 +175,7 @@ function handleTouchEndScrollDown(event) {
     const scrollDownEndTime = new Date().getTime();
 
     // Calculate the distance swiped in Y direction for scroll down
-    const swipeDistanceY = scrollDownStartY - scrollDownEndY;
+    const swipeDistanceY = scrollDownEndY - scrollDownStartY;
 
     // Calculate the time taken for the scroll down gesture in milliseconds
     const scrollDownTime = scrollDownEndTime - scrollDownStartTime;
