@@ -89,6 +89,14 @@ def user_info():
             # Ensure age is within the range of 0 to 99
             age = max(0, min(99, int(age)))
             conn = psycopg2.connect(DATABASE_URL)
+
+            #conn = psycopg2.connect(
+                  # database=DATABASE_NAME,
+                  # user=DATABASE_USER,
+                  # password=DATABASE_PASSWORD,
+                  # host=DATABASE_HOST,
+                  # port=DATABASE_PORT
+         #)
             cur = conn.cursor()
 
             cur.execute(
@@ -188,10 +196,10 @@ def swipe_gesture():
         #conn = psycopg2.connect(
            # database=DATABASE_NAME,
            # user=DATABASE_USER,
-           # password=DATABASE_PASSWORD,
-           # host=DATABASE_HOST,
+            #password=DATABASE_PASSWORD,
+            #host=DATABASE_HOST,
            # port=DATABASE_PORT
-        #)
+         #)
         cur = conn.cursor()
 
         cur.execute("""
@@ -249,12 +257,12 @@ def handle_swipe_data_real_time():
         # Now, you can perform database insertion or any other processing with the received data
         conn = psycopg2.connect(DATABASE_URL)
         #conn = psycopg2.connect(
-            #database=DATABASE_NAME,
+           # database=DATABASE_NAME,
             #user=DATABASE_USER,
-           # password=DATABASE_PASSWORD,
-           # host=DATABASE_HOST,
+            #password=DATABASE_PASSWORD,
+            #host=DATABASE_HOST,
            # port=DATABASE_PORT
-        #)
+         #)
         cur = conn.cursor()
 
         cur.execute("""
