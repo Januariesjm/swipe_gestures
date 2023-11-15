@@ -88,15 +88,15 @@ def user_info():
 
             # Ensure age is within the range of 0 to 99
             age = max(0, min(99, int(age)))
-            conn = psycopg2.connect(DATABASE_URL)
+            #conn = psycopg2.connect(DATABASE_URL)
 
-            #conn = psycopg2.connect(
-                  # database=DATABASE_NAME,
-                  # user=DATABASE_USER,
-                  # password=DATABASE_PASSWORD,
-                  # host=DATABASE_HOST,
-                  # port=DATABASE_PORT
-         #)
+            conn = psycopg2.connect(
+                   database=DATABASE_NAME,
+                   user=DATABASE_USER,
+                   password=DATABASE_PASSWORD,
+                   host=DATABASE_HOST,
+                   port=DATABASE_PORT
+         )
             cur = conn.cursor()
 
             cur.execute(
@@ -154,14 +154,10 @@ def swipe_gesture():
         swiping_repetitions_x_coordinate = 0.0
         swiping_repetitions_y_coordinate = 0.0
         total_number_of_clicks = 0.0
-        x_coordinate_clicks = 0.0
-        y_coordinate_clicks = 0.0
         total_time_taken = 0.0
         velocity = 0.0
-        device_screen_width = 0.0
         max_swipe_speed = 0.0
         min_swipe_speed = 0.0
-        finger_size = 0.0
 
         try:
             # Extract swipe gesture data from form fields
@@ -176,14 +172,10 @@ def swipe_gesture():
             swiping_repetitions_x_coordinate = float(request.form.get('swiping_repetitions_x_coordinate', 0.0))
             swiping_repetitions_y_coordinate = float(request.form.get('swiping_repetitions_y_coordinate', 0.0))
             total_number_of_clicks = float(request.form.get('total_number_of_clicks', 0.0))
-            x_coordinate_clicks = float(request.form.get('x_coordinate_clicks', 0.0))
-            y_coordinate_clicks = float(request.form.get('y_coordinate_clicks', 0.0))
             total_time_taken = float(request.form.get('total_time_taken', 0.0))
             velocity = float(request.form.get('velocity', 0.0))
-            device_screen_width = float(request.form.get('device_screen_width', 0.0))
             max_swipe_speed = float(request.form.get('max_swipe_speed', 0.0))
             min_swipe_speed = float(request.form.get('min_swipe_speed', 0.0))
-            finger_size = float(request.form.get('finger_size', 0.0))
         except ValueError:
             # Handle cases where form fields are not integers
             pass
@@ -192,29 +184,27 @@ def swipe_gesture():
         user_id = session['user_id']
 
         # Store the swipe gesture data in the database
-        conn = psycopg2.connect(DATABASE_URL)
-        #conn = psycopg2.connect(
-           # database=DATABASE_NAME,
-           # user=DATABASE_USER,
-            #password=DATABASE_PASSWORD,
-            #host=DATABASE_HOST,
-           # port=DATABASE_PORT
-         #)
+        #conn = psycopg2.connect(DATABASE_URL)
+        conn = psycopg2.connect(
+            database=DATABASE_NAME,
+            user=DATABASE_USER,
+            password=DATABASE_PASSWORD,
+            host=DATABASE_HOST,
+            port=DATABASE_PORT
+         )
         cur = conn.cursor()
 
         cur.execute("""
             INSERT INTO swipe_gesture_data (
                 user_id, left_to_right, right_to_left, scroll_up, scroll_down, zoom_in, zoom_out, swipe_width,
-                swiping_repetitions_x_coordinate, swiping_repetitions_y_coordinate, total_number_of_clicks,
-                x_coordinate_clicks, y_coordinate_clicks, total_time_taken, velocity, device_screen_width,
-                max_swipe_speed, min_swipe_speed, finger_size
+                swiping_repetitions_x_coordinate, swiping_repetitions_y_coordinate, total_number_of_clicks, total_time_taken, velocity,
+                max_swipe_speed, min_swipe_speed
             )
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """, (
             user_id, left_to_right, right_to_left, scroll_up, scroll_down, zoom_in, zoom_out, swipe_width,
-            swiping_repetitions_x_coordinate, swiping_repetitions_y_coordinate, total_number_of_clicks,
-            x_coordinate_clicks, y_coordinate_clicks, total_time_taken, velocity, device_screen_width,
-            max_swipe_speed, min_swipe_speed, finger_size
+            swiping_repetitions_x_coordinate, swiping_repetitions_y_coordinate, total_number_of_clicks, total_time_taken, velocity,
+            max_swipe_speed, min_swipe_speed
         ))
 
         conn.commit()
@@ -245,43 +235,39 @@ def handle_swipe_data_real_time():
         swiping_repetitions_x_coordinate = float(request.form.get('swiping_repetitions_x_coordinate', 0.0)) if request.form.get('swiping_repetitions_x_coordinate') else 0.0
         swiping_repetitions_y_coordinate = float(request.form.get('swiping_repetitions_y_coordinate', 0.0)) if request.form.get('swiping_repetitions_y_coordinate') else 0.0
         total_number_of_clicks = float(request.form.get('total_number_of_clicks', 0.0)) if request.form.get('total_number_of_clicks') else 0.0
-        x_coordinate_clicks = float(request.form.get('x_coordinate_clicks', 0.0)) if request.form.get('x_coordinate_clicks') else 0.0
-        y_coordinate_clicks = float(request.form.get('y_coordinate_clicks', 0.0)) if request.form.get('y_coordinate_clicks') else 0.0
         total_time_taken = float(request.form.get('total_time_taken', 0.0)) if request.form.get('total_time_taken') else 0.0
         velocity = float(request.form.get('velocity', 0.0)) if request.form.get('velocity') else 0.0
-        device_screen_width = float(request.form.get('device_screen_width', 0.0)) if request.form.get('device_screen_width') else 0.0
         max_swipe_speed = float(request.form.get('max_swipe_speed', 0.0)) if request.form.get('max_swipe_speed') else 0.0
         min_swipe_speed = float(request.form.get('min_swipe_speed', 0.0)) if request.form.get('min_swipe_speed') else 0.0
-        finger_size = float(request.form.get('finger_size', 0.0)) if request.form.get('finger_size') else 0.0
 
         # Now, you can perform database insertion or any other processing with the received data
-        conn = psycopg2.connect(DATABASE_URL)
-        #conn = psycopg2.connect(
-           # database=DATABASE_NAME,
-            #user=DATABASE_USER,
-            #password=DATABASE_PASSWORD,
-            #host=DATABASE_HOST,
-           # port=DATABASE_PORT
-         #)
+        #conn = psycopg2.connect(DATABASE_URL)
+        conn = psycopg2.connect(
+            database=DATABASE_NAME,
+            user=DATABASE_USER,
+            password=DATABASE_PASSWORD,
+            host=DATABASE_HOST,
+            port=DATABASE_PORT
+         )
         cur = conn.cursor()
 
         cur.execute("""
             INSERT INTO swipe_gesture_data (
                 user_id, left_to_right, right_to_left, scroll_up, scroll_down, zoom_in, zoom_out, swipe_width,
-                swiping_repetitions_x_coordinate, swiping_repetitions_y_coordinate, total_number_of_clicks,
-                x_coordinate_clicks, y_coordinate_clicks, total_time_taken, velocity, device_screen_width,
-                max_swipe_speed, min_swipe_speed, finger_size
+                swiping_repetitions_x_coordinate, swiping_repetitions_y_coordinate, total_number_of_clicks, total_time_taken, velocity,
+                max_swipe_speed, min_swipe_speed
             )
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """, (
             user_id, left_to_right, right_to_left, scroll_up, scroll_down, zoom_in, zoom_out, swipe_width,
-            swiping_repetitions_x_coordinate, swiping_repetitions_y_coordinate, total_number_of_clicks,
-            x_coordinate_clicks, y_coordinate_clicks, total_time_taken, velocity, device_screen_width,
-            max_swipe_speed, min_swipe_speed, finger_size
+            swiping_repetitions_x_coordinate, swiping_repetitions_y_coordinate, total_number_of_clicks, total_time_taken, velocity,
+            max_swipe_speed, min_swipe_speed
         ))
 
         conn.commit()
         conn.close()
+
+        response_data = {'status': 'success', 'message': 'Swipe data processed successfully.'}
         return jsonify(response_data)
     except Exception as e:
         print(f"Error processing swipe data: {str(e)}")

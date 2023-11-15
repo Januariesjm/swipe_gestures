@@ -27,7 +27,13 @@
                                 <a href="{{ url_for('change_language', language='en') }}">English</a>
                                 {% endif %}
                             </div>
-                            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">{{_('User Information')}}</h3>
+                            <h3 class="mb-3 pb-2 pb-md-0 mb-md-3">{{_('User Information')}}</h3>
+                            <ul style="list-style-type:cicrle">
+                                <li>{{_('Grasp: From which hand you have held the device.')}}</li>
+                                <li>{{_('Hand Movement: Which hand is using right, left or both hands.')}}</li>
+                                <li>{{_('Device Orientation: The device orientation is in landscape or portrait')}}</li>
+                            </ul>
+
                             <form id="form" class="was-validated" action="/user_info" method="POST">
                                 <div class="row form-container">
                                     <!-- Age -->

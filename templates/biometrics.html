@@ -1,132 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biometrics</title>
-    <!-- Add your CSS styles or links here -->
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
-
-        h1 {
-            color: #333;
-        }
-
-        .user-info {
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        p {
-            margin: 10px 0;
-        }
-
-        a {
-            display: block;
-            margin: 20px 0;
-            text-decoration: none;
-            color: #007BFF;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        .biometrics-form {
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
-            margin: 20px auto;
-            padding: 20px;
-        }
-
-        .biometrics-form h2 {
-            color: #333;
-            margin-bottom: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            text-align: left;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        input[type="text"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        button[type="submit"] {
-            background-color: #007BFF;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        button[type="submit"]:hover {
-            background-color: #0056b3;
-        }
-    </style>
-</head>
-
-<body>
-    <h1>Welcome to the Biometrics Page</h1>
-
-    <div class="user-info">
-        <h2>User Information</h2>
-        <p>User ID: {{ user_id }}</p>
-        <p>Age: {{ age }}</p>
-        <p>Gender: {{ gender }}</p>
-        <p>Hand: {{ hand }}</p>
-        <p>Device: {{ device }}</p>
-    </div>
-
-    <!-- Add your content and form elements for the biometrics page here -->
-    <div class="biometrics-form">
-        <h2>Biometrics Data Collection</h2>
-        <form id="biometrics-form" action="/biometrics" method="POST">
-            <!-- Add form fields for biometrics data collection -->
-            <!-- Example: Swipe gestures, time, speed, etc. -->
-            <div class="form-group">
-                <label for="swipeGestures">Swipe Gestures</label>
-                <input type="text" id="swipeGestures" name="swipeGestures" required>
-            </div>
-
-            <!-- Additional form fields can be added here -->
-
-            <button type="submit">Submit Biometrics Data</button>
-        </form>
-    </div>
-
-    <!-- Add any links or buttons for further navigation -->
-    <a href="/user_info">Back to Home</a>
-
-    <!-- Add your JavaScript scripts or links here -->
-    <script src="/static/js/biometrics.js"></script>
-    <!-- Create a separate JavaScript file for biometrics page functionality -->
-</body>
-
-</html>
+CREATE TABLE swipe_gesture_data (
+    id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL,
+    left_to_right FLOAT DEFAULT 0.0,
+    right_to_left FLOAT DEFAULT 0.0,
+    scroll_up FLOAT DEFAULT 0.0,
+    scroll_down FLOAT DEFAULT 0.0,
+    zoom_in FLOAT DEFAULT 0.0,
+    zoom_out FLOAT DEFAULT 0.0,
+    swipe_width FLOAT DEFAULT 0.0,
+    swiping_repetitions_x_coordinate FLOAT DEFAULT 0.0,
+    swiping_repetitions_y_coordinate FLOAT DEFAULT 0.0,
+    total_number_of_clicks FLOAT DEFAULT 0.0,
+    total_time_taken FLOAT DEFAULT 0.0,
+    velocity FLOAT DEFAULT 0.0,
+    device_screen_width FLOAT DEFAULT 0.0,
+    max_swipe_speed FLOAT DEFAULT 0.0,
+    min_swipe_speed FLOAT DEFAULT 0.0,
+);

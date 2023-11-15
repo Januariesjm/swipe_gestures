@@ -6,6 +6,25 @@ let zoomOutStartX = 0;
 let zoomOutStartY = 0;
 let zoomOutStartTime = 0;
 
+// Variables to track left to right swipe
+let leftToRightStartX = 0;
+let leftToRightStartTime = 0;
+
+// Variables to track right to left swipe
+let rightToLeftStartX = 0;
+let rightToLeftStartTime = 0;
+
+// Variables to track scroll up
+let scrollUpStartY = 0;
+let scrollUpStartTime = 0;
+
+// Variables to track scroll down
+let scrollDownStartY = 0;
+let scrollDownStartTime = 0;
+
+let minSwipeSpeed = 0; 
+
+
 // Function to handle touch start for zoom in
 function handleTouchStartZoomIn(event) {
   zoomInStartX = event.touches[0].clientX;
@@ -62,19 +81,6 @@ function handleTouchEndZoomOut(event) {
   }
 }
 
-// Function to update hidden form fields with swipe gesture data
-function updateSwipeData(zoomIn, zoomOut, swipeDistanceX, swipeDistanceY, totalTimeTaken) {
-  document.getElementById('zoomIn').value = zoomIn;
-  document.getElementById('zoomOut').value = zoomOut;
-  document.getElementById('swipeWidth').value = Math.sqrt(swipeDistanceX * swipeDistanceX + swipeDistanceY * swipeDistanceY);
-  document.getElementById('swipingRepetitionsX').value = swipeDistanceX;
-  document.getElementById('swipingRepetitionsY').value = swipeDistanceY;
-  document.getElementById('totalTimeTaken').value = totalTimeTaken;
-
-// Variables to track left to right swipe
-let leftToRightStartX = 0;
-let leftToRightStartTime = 0;
-
 // Function to handle touch start for left to right swipe
 function handleTouchStartLeftToRight(event) {
   leftToRightStartX = event.touches[0].clientX;
@@ -99,10 +105,6 @@ function handleTouchEndLeftToRight(event) {
     }
   }
 }
-
-// Variables to track right to left swipe
-let rightToLeftStartX = 0;
-let rightToLeftStartTime = 0;
 
 // Function to handle touch start for right to left swipe
 function handleTouchStartRightToLeft(event) {
@@ -129,10 +131,6 @@ function handleTouchEndRightToLeft(event) {
   }
 }
 
-// Variables to track scroll up
-let scrollUpStartY = 0;
-let scrollUpStartTime = 0;
-
 // Function to handle touch start for scroll up
 function handleTouchStartScrollUp(event) {
   scrollUpStartY = event.touches[0].clientY;
@@ -157,10 +155,6 @@ function handleTouchEndScrollUp(event) {
     }
   }
 }
-
-// Variables to track scroll down
-let scrollDownStartY = 0;
-let scrollDownStartTime = 0;
 
 // Function to handle touch start for scroll down
 function handleTouchStartScrollDown(event) {
@@ -187,36 +181,30 @@ function handleTouchEndScrollDown(event) {
   }
 }
 
-// Add event listeners for touch start and touch end
-document.addEventListener('touchstart', (event) => {
-  // ... (Your existing code)
-  handleTouchStartLeftToRight(event);
-  handleTouchStartRightToLeft(event);
-  handleTouchStartScrollUp(event);
-  handleTouchStartScrollDown(event);
-});
-
-document.addEventListener('touchend', (event) => {
-  // ... (Your existing code)
-  handleTouchEndLeftToRight(event);
-  handleTouchEndRightToLeft(event);
-  handleTouchEndScrollUp(event);
-  handleTouchEndScrollDown(event);
-});
-
-  
+// Function to update hidden form fields with swipe gesture data
+function updateSwipeData(zoomIn, zoomOut, swipeDistanceX, swipeDistanceY, totalTimeTaken) {
+  document.getElementById('zoomIn').value = zoomIn;
+  document.getElementById('zoomOut').value = zoomOut;
+  document.getElementById('swipeWidth').value = Math.sqrt(swipeDistanceX * swipeDistanceX + swipeDistanceY * swipeDistanceY);
+  document.getElementById('swipingRepetitionsX').value = swipeDistanceX;
+  document.getElementById('swipingRepetitionsY').value = swipeDistanceY;
+  document.getElementById('totalTimeTaken').value = totalTimeTaken;
 
   // You can send this data to the server using JavaScript fetch or XMLHttpRequest
   // Example using fetch:
   fetch('/swipe_data', {
     method: 'POST',
-    body: new FormData(document.getElementById('swipeForm')), // Automatically includes all form fields
+    body: new FormData(document.getElementById('swipeForm')),
   })
-    .then(response => {
-      if (response.ok) {
-        console.log('Swipe data sent successfully.');
+    .then(response => response.json())
+    .then(data => {
+      console.log('Server response:', data);
+      if (data.status === 'success') {
+        console.log('Swipe data sent successfully:', data.message);
+        const successMessage = document.getElementById('successMessage');
+        successMessage.style.display = 'block';
       } else {
-        console.error('Error sending swipe data.');
+        console.error('Error processing swipe data:', data.message);
       }
     })
     .catch(error => {
@@ -226,33 +214,166 @@ document.addEventListener('touchend', (event) => {
 
 // Add event listeners for touch start and touch end
 document.addEventListener('touchstart', (event) => {
+  // ... (Your existing code)
   handleTouchStartZoomIn(event);
   handleTouchStartZoomOut(event);
+  handleTouchStartLeftToRight(event);
+  handleTouchStartRightToLeft(event);
+  handleTouchStartScrollUp(event);
+  handleTouchStartScrollDown(event);
 });
 
 document.addEventListener('touchend', (event) => {
+  // ... (Your existing code)
   handleTouchEndZoomIn(event);
   handleTouchEndZoomOut(event);
+  handleTouchEndLeftToRight(event);
+  handleTouchEndRightToLeft(event);
+  handleTouchEndScrollUp(event);
+  handleTouchEndScrollDown(event);
 });
 
-fetch('/swipe_data', {
-  method: 'POST',
-  body: new FormData(document.getElementById('swipeForm')), // Automatically includes all form fields
-})
-  .then(response => response.json())
-  .then(data => {
-    if (data.status === 'success') {
-      // Handle success, e.g., show a success message
-      console.log('Swipe data sent successfully:', data.message);
-      const successMessage = document.getElementById('successMessage');
-      successMessage.style.display = 'block'; // Display the message
+// Function to calculate velocity
+function calculateVelocity(swipeDistanceX, swipeDistanceY, totalTimeTaken) {
+  // Replace this with your actual velocity calculation logic
+  return Math.sqrt((swipeDistanceX ** 2) + (swipeDistanceY ** 2)) / totalTimeTaken;
+}
 
-    } else {
-      // Handle errors if the server responds with an error
-      console.error('Error processing swipe data:', data.message);
-    }
+// Function to calculate zoom in
+function calculateZoomIn(swipeDistanceX, swipeDistanceY, totalTimeTaken) {
+  // Assuming a significant swipe to the right and downward
+  if (swipeDistanceX > 50 && swipeDistanceY > 50) {
+    // Calculate the zoom in factor or speed based on the swipe distance and time taken
+    return Math.sqrt(swipeDistanceX * swipeDistanceX + swipeDistanceY * swipeDistanceY) / totalTimeTaken;
+  } else {
+    // Return 0 if the swipe doesn't meet the criteria for a zoom in gesture
+    return 0;
+  }
+}
+
+// Function to calculate zoom out
+function calculateZoomOut(swipeDistanceX, swipeDistanceY, totalTimeTaken) {
+  // Assuming a significant swipe to the left and upward
+  if (swipeDistanceX < -50 && swipeDistanceY < -50) {
+    // Calculate the zoom out factor or speed based on the swipe distance and time taken
+    return Math.sqrt(swipeDistanceX * swipeDistanceX + swipeDistanceY * swipeDistanceY) / totalTimeTaken;
+  } else {
+    // Return 0 if the swipe doesn't meet the criteria for a zoom out gesture
+    return 0;
+  }
+}
+
+// Function to calculate left to right swipe
+function calculateLeftToRight(swipeDistanceX, swipeDistanceY, totalTimeTaken) {
+  // Assuming a significant swipe to the right in X direction
+  return swipeDistanceX > 50 && Math.abs(swipeDistanceY) < 50 ? swipeDistanceX / totalTimeTaken : 0;
+}
+
+// Function to calculate right to left swipe
+function calculateRightToLeft(swipeDistanceX, swipeDistanceY, totalTimeTaken) {
+  // Assuming a significant swipe to the left in X direction
+  return swipeDistanceX < -50 && Math.abs(swipeDistanceY) < 50 ? Math.abs(swipeDistanceX) / totalTimeTaken : 0;
+}
+
+// Function to calculate scroll up
+function calculateScrollUp(swipeDistanceX, swipeDistanceY, totalTimeTaken) {
+  // Assuming a significant swipe upward in Y direction
+  return swipeDistanceY > 50 && Math.abs(swipeDistanceX) < 50 ? swipeDistanceY / totalTimeTaken : 0;
+}
+
+// Function to calculate scroll down
+function calculateScrollDown(swipeDistanceX, swipeDistanceY, totalTimeTaken) {
+  // Assuming a significant swipe downward in Y direction
+  if (swipeDistanceY < -50 && Math.abs(swipeDistanceX) < 50) {
+    // Calculate the scroll down speed as the absolute value of swipeDistanceY divided by totalTimeTaken
+    return Math.abs(swipeDistanceY) / totalTimeTaken;
+  } else {
+    // Return 0 if the swipe doesn't meet the criteria for a significant downward swipe
+    return 0;
+  }
+}
+// Function to calculate total number of clicks
+function calculateTotalClicks(totalNumberOfClicks) {
+  // Assuming totalNumberOfClicks is already tracked
+  return totalNumberOfClicks || 0;
+}
+
+// Function to calculate total time taken
+function calculateTotalTimeTaken(totalTimeTaken) {
+  // Assuming totalTimeTaken is already tracked
+  return totalTimeTaken || 0;
+}
+
+// Function to calculate max swipe speed
+function calculateMaxSwipeSpeed(velocity, maxSwipeSpeed) {
+  // Assuming maxSwipeSpeed is already tracked
+  if (isNaN(velocity)) {
+    return maxSwipeSpeed || 0;
+  }
+  return Math.max(velocity, maxSwipeSpeed || 0);
+}
+
+// Function to calculate min swipe speed
+function calculateMinSwipeSpeed(velocity, minSwipeSpeed) {
+  // Assuming minSwipeSpeed is already tracked
+  if (isNaN(velocity)) {
+    return minSwipeSpeed || 0;
+  }
+  return Math.min(velocity, minSwipeSpeed ||0);
+}
+
+
+// Function to update hidden form fields with swipe gesture data
+function updateSwipeData(
+  swipeDistanceX,
+  swipeDistanceY,
+  totalTimeTaken,
+  leftToRightTime,
+  rightToLeftTime,
+  scrollUpTime,
+  scrollDownTime,
+  totalNumberOfClicks,
+  minSwipeSpeed,
+  maxSwipeSpeed
+) {
+  document.getElementById('zoomIn').value = calculateZoomIn(swipeDistanceX, swipeDistanceY, totalTimeTaken);
+  document.getElementById('zoomOut').value = calculateZoomOut(swipeDistanceX, swipeDistanceY, totalTimeTaken);
+  document.getElementById('swipeWidth').value = Math.sqrt(swipeDistanceX * swipeDistanceX + swipeDistanceY * swipeDistanceY);
+  document.getElementById('swipingRepetitionsX').value = swipeDistanceX;
+  document.getElementById('swipingRepetitionsY').value = swipeDistanceY;
+  document.getElementById('totalTimeTaken').value = totalTimeTaken;
+
+  // Additional fields
+  document.getElementById('leftToRight').value = calculateLeftToRight(swipeDistanceX, swipeDistanceY, totalTimeTaken);
+  document.getElementById('rightToLeft').value = calculateRightToLeft(swipeDistanceX, swipeDistanceY, totalTimeTaken);
+  document.getElementById('scrollUp').value = calculateScrollUp(swipeDistanceX, swipeDistanceY, totalTimeTaken);
+  document.getElementById('scrollDown').value = calculateScrollDown(swipeDistanceX, swipeDistanceY, totalTimeTaken);
+
+  document.getElementById('totalClicks').value = calculateTotalClicks(totalNumberOfClicks);
+  document.getElementById('velocity').value = calculateVelocity(swipeDistanceX, swipeDistanceY, totalTimeTaken) || 0; 
+  document.getElementById('maxSwipeSpeed').value = calculateMaxSwipeSpeed(calculateVelocity(swipeDistanceX, swipeDistanceY, totalTimeTaken), maxSwipeSpeed); 
+  document.getElementById('minSwipeSpeed').value = calculateMinSwipeSpeed(calculateVelocity(swipeDistanceX, swipeDistanceY, totalTimeTaken), minSwipeSpeed);
+
+  // You can send this data to the server using JavaScript fetch or XMLHttpRequest
+  // Example using fetch:
+  fetch('/swipe_data', {
+    method: 'POST',
+    body: new FormData(document.getElementById('swipeForm')),
   })
-  .catch(error => {
-    // Handle network errors or other issues
-    console.error('Network error:', error);
-  });
+    .then(response => response.json())
+    .then(data => {
+      console.log('Server response:', data);
+      if (data.status === 'success') {
+        console.log('Swipe data sent successfully:', data.message);
+        const successMessage = document.getElementById('successMessage');
+        successMessage.style.display = 'block';
+      } else {
+        console.error('Error processing swipe data:', data.message);
+      }
+    })
+    .catch(error => {
+      console.error('Network error:', error);
+    });
+}
+
+// ... (Your existing code)
