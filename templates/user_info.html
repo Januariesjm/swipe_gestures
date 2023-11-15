@@ -36,21 +36,22 @@
 
                             <form id="form" class="was-validated" action="/user_info" method="POST">
                                 <div class="row form-container">
-                                      <!-- Age-->
+                                    <!-- Age -->
                                     <div class="col-md-6 mb-4">
                                         <div class="form-outline">
                                             <label for="age" class="form-label"><strong>{{_('Age')}}</strong></label>
                                             <div class="input-group">
-                                                <input name="age" id="age" type="number" min="1" max="90" required value="0" style="text-align: center; min-width: 60%; min-height: 2.5em; border-radius: 5%; color: black; " />
-                                                <div class="input-group-append">
-                                                    <button type="button" class="btn btn-secondary" id="decrementAge">-</button>
-                                                    <button type="button" class="btn btn-secondary" id="incrementAge">+</button>
-                                                </div>
+                                                <input name="age" id="age" type="number" min="0" max="99" required
+                                                value="0"> <button type="button" class="btn btn-secondary"
+                                                    id="decrementAge">-</button>
+                                                  
+                                                <button type="button" class="btn btn-secondary"
+                                                    id="incrementAge">+</button> />
                                             </div>
-                                            <div class="invalid-feedback" id="validAge">{{_('Please fill out this field with a valid age between 0 and 99.')}}</div>
+                                            <div class="invalid-feedback" id="validAge">{{_('Please fill out this field
+                                                with a valid age between 0 and 99.')}}</div>
                                         </div>
                                     </div>
-                                    
 
 
                                     <!-- Gender -->
