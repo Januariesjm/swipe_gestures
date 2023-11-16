@@ -325,7 +325,6 @@ function calculateMinSwipeSpeed(velocity, minSwipeSpeed) {
 
 // Function to update hidden form fields with swipe gesture data
 function updateSwipeData(
-  zoomIn,
   zoomOut,
   swipeDistanceX,
   swipeDistanceY,
@@ -335,6 +334,7 @@ function updateSwipeData(
   scrollUpTime,
   scrollDownTime,
   totalNumberOfClicks,
+  maxSwipeSpeed,
   minSwipeSpeed
 ) {
   document.getElementById('zoomIn').value = calculateZoomIn(swipeDistanceX, swipeDistanceY, totalTimeTaken);
