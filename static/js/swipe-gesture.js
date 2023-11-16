@@ -201,8 +201,8 @@ function updateSwipeData(zoomIn, zoomOut, swipeDistanceX, swipeDistanceY, totalT
       console.log('Server response:', data);
       if (data.status === 'success') {
         //console.log('Swipe data sent successfully:', data.message);
-        //const successMessage = document.getElementById('successMessage');
-        //successMessage.style.display = 'block';
+        const successMessage = document.getElementById('successMessage');
+        successMessage.style.display = 'block';
       } else {
         console.error('Error processing swipe data:', data.message);
       }
@@ -306,21 +306,21 @@ function calculateTotalTimeTaken(totalTimeTaken) {
 
 // Function to calculate max swipe speed
 function calculateMaxSwipeSpeed(velocity, maxSwipeSpeed) {
-  // Assuming maxSwipeSpeed is already tracked
-  if (isNaN(velocity)) {
-    return maxSwipeSpeed || 0;
-  }
-  return Math.max(velocity);
-}
+  let maximum = Math.max(velocity, maxSwipeSpeed);
+  // Math.min(10,3,8,1,33)
+  let minimum = Math.min(velocity, maxSwipeSpeed);
+  let maxSwipeSpeed =  ([maximum, minimum]); 
+  return result;
+};
+
+
 
 // Function to calculate min swipe speed
-function calculateMinSwipeSpeed(velocity) {
-  // Assuming minSwipeSpeed is already tracked
-  if (isNaN(velocity)) {
-    return minSwipeSpeed || 0;
-  }
-  return Math.min(velocity ||0);
-}
+function calculateMinSwipeSpeed(velocity, minSwipeSpeed) {
+  let maximum = Math.max(velocity, minSwipeSpeed);
+  let minimum = Math.min(velocity, minSwipeSpeed);
+  let minSwipeSpeed =  ([maximum, minimum]); 
+  return result;}
 
 
 // Function to update hidden form fields with swipe gesture data
@@ -353,8 +353,8 @@ function updateSwipeData(
 
   document.getElementById('totalClicks').value = calculateTotalClicks(totalNumberOfClicks);
   document.getElementById('velocity').value = calculateVelocity(swipeDistanceX, swipeDistanceY, totalTimeTaken) || 0; 
-  document.getElementById('maxSwipeSpeed').value =  Math.max(Math.sqrt((swipeDistanceX ** 2) + (swipeDistanceY ** 2)) / totalTimeTaken); 
-  document.getElementById('minSwipeSpeed').value = Math.min(Math.sqrt((swipeDistanceX ** 2) + (swipeDistanceY ** 2)) / totalTimeTaken);
+  document.getElementById('maxSwipeSpeed').value = calculateMaxSwipeSpeed(calculateVelocity(swipeDistanceX, swipeDistanceY, totalTimeTaken), maxSwipeSpeed); 
+  document.getElementById('minSwipeSpeed').value = calculateMinSwipeSpeed(calculateVelocity(swipeDistanceX, swipeDistanceY, totalTimeTaken), minSwipeSpeed);
 
   // You can send this data to the server using JavaScript fetch or XMLHttpRequest
   // Example using fetch:
