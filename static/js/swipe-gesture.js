@@ -200,7 +200,7 @@ function updateSwipeData(zoomIn, zoomOut, swipeDistanceX, swipeDistanceY, totalT
     .then(data => {
       console.log('Server response:', data);
       if (data.status === 'success') {
-        console.log('Swipe data sent successfully:', data.message);
+        //console.log('Swipe data sent successfully:', data.message);
         const successMessage = document.getElementById('successMessage');
         successMessage.style.display = 'block';
       } else {
@@ -366,7 +366,7 @@ function updateSwipeData(
     .then(data => {
       console.log('Server response:', data);
       if (data.status === 'success') {
-        console.log('Swipe data sent successfully:', data.message);
+       // console.log('Swipe data sent successfully:', data.message);
         const successMessage = document.getElementById('successMessage');
         successMessage.style.display = 'block';
       } else {

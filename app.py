@@ -269,7 +269,7 @@ def handle_swipe_data_real_time():
         conn.commit()
         conn.close()
 
-        response_data = {'status': 'success', 'message': 'Swipe data processed successfully.'}
+        response_data = {'status': 'success', 'message': ''}
         return jsonify(response_data)
     except Exception as e:
         print(f"Error processing swipe data: {str(e)}")
