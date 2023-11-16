@@ -202,9 +202,10 @@ def swipe_gesture():
             )
             VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """, (
-            user_id, left_to_right, right_to_left, scroll_up, scroll_down, zoom_in, zoom_out, swipe_width,
-            swiping_repetitions_x_coordinate, swiping_repetitions_y_coordinate, total_number_of_clicks, total_time_taken, velocity,
-            max_swipe_speed, min_swipe_speed
+            user_id, float(left_to_right), float(right_to_left), float(scroll_up), float(scroll_down), float(zoom_in), float(zoom_out), float(swipe_width),
+            float(swiping_repetitions_x_coordinate), float(swiping_repetitions_y_coordinate),
+            float(total_number_of_clicks), float(total_time_taken), float(velocity),
+            float(max_swipe_speed), float(min_swipe_speed)
         ))
 
         conn.commit()
@@ -259,9 +260,10 @@ def handle_swipe_data_real_time():
             )
             VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """, (
-            user_id, left_to_right, right_to_left, scroll_up, scroll_down, zoom_in, zoom_out, swipe_width,
-            swiping_repetitions_x_coordinate, swiping_repetitions_y_coordinate, total_number_of_clicks, total_time_taken, velocity,
-            max_swipe_speed, min_swipe_speed
+            user_id, float(left_to_right), float(right_to_left), float(scroll_up), float(scroll_down), float(zoom_in), float(zoom_out), float(swipe_width),
+            float(swiping_repetitions_x_coordinate), float(swiping_repetitions_y_coordinate),
+            float(total_number_of_clicks), float(total_time_taken), float(velocity),
+            float(max_swipe_speed), float(min_swipe_speed)
         ))
 
         conn.commit()
