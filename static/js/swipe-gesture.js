@@ -310,7 +310,7 @@ function calculateMaxSwipeSpeed(velocity, maxSwipeSpeed) {
   if (isNaN(velocity)) {
     return maxSwipeSpeed || 0;
   }
-  return Math.max(velocity, maxSwipeSpeed || 0);
+  return Math.max(velocity);
 }
 
 // Function to calculate min swipe speed
