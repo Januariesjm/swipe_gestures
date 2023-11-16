@@ -319,7 +319,7 @@ function calculateMinSwipeSpeed(velocity, minSwipeSpeed) {
   if (isNaN(velocity)) {
     return minSwipeSpeed || 0;
   }
-  return Math.min(velocity, minSwipeSpeed ||0);
+  return Math.min(velocity ||0);
 }
 
 
