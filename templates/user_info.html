@@ -180,6 +180,8 @@
 <script src="/static/js/spinbox.js"></script>
 
 <script>
+    //function to handle age increment
+    
     // Function to handle the "Next" button click
     function handleNextButtonClick() {
         var valid = true;
@@ -346,11 +348,77 @@
         }
     });
 
+    
     // Disable the back button when the user navigates away
     history.pushState(null, null, document.URL);
     window.addEventListener('popstate', function () {
         history.pushState(null, null, document.URL);
     });
+
+ 
 </script>
 
+<script>
+    $("#form").submit(function(e) {
+        e.preventDefault();
+        if ($('#age').val() < 1) {
+            $("#validAge").show();
+            return;
+        }
+        console.log($("#gender").val());
+        if ($("#gender").val() === '0') {
+            $("#selectGender").show();
+            return;
+        }
+
+        $("#form")[0].submit();
+    });
+    $("#gender").change(() => {
+        console.log($("#gender").val());
+        if ($("#gender").val() !== '0')
+            $("#selectGender").hide();
+        else $("#selectGender").show();
+
+    })
+    $('#age').change(() => {
+        if ($('#age').val() < 1) {
+            $("#validAge").show();
+            $('input[type="submit"]').prop("disabled", true);
+
+        } else {
+            $("#validAge").hide();
+            $('input[type="submit"]').prop("disabled", false);
+        }
+    })
+    $(document).ready(function() {
+    var i = 0, timeOut = 0;
+    $("#incremental").on('mousedown touchstart', function() { 
+      $(this).addClass('active');
+      timeOut = setInterval(function(){
+        let $input = parseInt($('#age').val());
+        if ($input < 99) {
+          $('#age').val($input + 1);
+          if ($input == -1){
+            $('#age').val(1);
+            $('#age').css('color','green') 
+          }
+        }
+      }, 60);
+    }).bind('mouseup mouseleave touchend', function() {
+      $(this).removeClass('active');
+        clearInterval(timeOut);
+      }); 
+    $("#decremental").on('mousedown touchstart', function() {
+      timeOut = setInterval(function(){
+        let $input = parseInt($('#age').val());
+        if ($input > 1) {
+          $('#age').val($input -1)
+        }  
+      }, 60);
+    }).bind('mouseup mouseleave touchend', function() {
+      $(this).removeClass('active');
+        clearInterval(timeOut);
+      });
+    });
+</script>
 </html>
