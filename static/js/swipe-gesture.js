@@ -367,8 +367,8 @@ function updateSwipeData(
       console.log('Server response:', data);
       if (data.status === 'success') {
        // console.log('Swipe data sent successfully:', data.message);
-        const successMessage = document.getElementById('successMessage');
-        successMessage.style.display = 'block';
+        //const successMessage = document.getElementById('successMessage');
+        //successMessage.style.display = 'block';
       } else {
         console.error('Error processing swipe data:', data.message);
       }
