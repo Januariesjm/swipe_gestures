@@ -235,7 +235,9 @@ document.addEventListener('touchend', (event) => {
 
 // Function to calculate velocity
 function calculateVelocity(swipeDistanceX, swipeDistanceY, totalTimeTaken) {
-  // Replace this with your actual velocity calculation logic
+  if (totalTimeTaken === 0) {
+    return 0;
+  }
   return Math.sqrt((swipeDistanceX ** 2) + (swipeDistanceY ** 2)) / totalTimeTaken;
 }
 

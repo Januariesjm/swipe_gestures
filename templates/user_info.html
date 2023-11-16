@@ -41,12 +41,23 @@
                                         <div class="form-outline">
                                             <label for="age" class="form-label"><strong>{{_('Age')}}</strong></label>
                                             <div class="input-group">
-                                                <input name='age' id="age" type="number" required value="0" min="1" max="90" style="text-align: center; min-width: 60%; min-height: 2.5em; border-radius: 5%; "/>
-                                             </div> 
+                                                <input name='age' id="age" type="number" required value="0" min="1"
+                                                    max="90"
+                                                    style="text-align: center; min-width: 60%; min-height: 2.5em; border-radius: 5%; " />
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            id="decrementAge">-</button>
+                                                        <button type="button" class="btn btn-secondary"
+                                                            id="incrementAge">+</button>
+                                                    </span>
+                                                </div>
+                                            </div>
                                             <div class="invalid-feedback" id="validAge">{{_('Please fill out this field
                                                 with a valid age between 0 and 99.')}}</div>
                                         </div>
                                     </div>
+
 
 
                                     <!-- Gender -->
@@ -181,7 +192,7 @@
 
 <script>
     //function to handle age increment
-    
+
     // Function to handle the "Next" button click
     function handleNextButtonClick() {
         var valid = true;
@@ -348,77 +359,15 @@
         }
     });
 
-    
+
     // Disable the back button when the user navigates away
     history.pushState(null, null, document.URL);
     window.addEventListener('popstate', function () {
         history.pushState(null, null, document.URL);
     });
 
- 
+
 </script>
 
-<script>
-    $("#form").submit(function(e) {
-        e.preventDefault();
-        if ($('#age').val() < 1) {
-            $("#validAge").show();
-            return;
-        }
-        console.log($("#gender").val());
-        if ($("#gender").val() === '0') {
-            $("#selectGender").show();
-            return;
-        }
 
-        $("#form")[0].submit();
-    });
-    $("#gender").change(() => {
-        console.log($("#gender").val());
-        if ($("#gender").val() !== '0')
-            $("#selectGender").hide();
-        else $("#selectGender").show();
-
-    })
-    $('#age').change(() => {
-        if ($('#age').val() < 1) {
-            $("#validAge").show();
-            $('input[type="submit"]').prop("disabled", true);
-
-        } else {
-            $("#validAge").hide();
-            $('input[type="submit"]').prop("disabled", false);
-        }
-    })
-    $(document).ready(function() {
-    var i = 0, timeOut = 0;
-    $("#incremental").on('mousedown touchstart', function() { 
-      $(this).addClass('active');
-      timeOut = setInterval(function(){
-        let $input = parseInt($('#age').val());
-        if ($input < 99) {
-          $('#age').val($input + 1);
-          if ($input == -1){
-            $('#age').val(1);
-            $('#age').css('color','green') 
-          }
-        }
-      }, 60);
-    }).bind('mouseup mouseleave touchend', function() {
-      $(this).removeClass('active');
-        clearInterval(timeOut);
-      }); 
-    $("#decremental").on('mousedown touchstart', function() {
-      timeOut = setInterval(function(){
-        let $input = parseInt($('#age').val());
-        if ($input > 1) {
-          $('#age').val($input -1)
-        }  
-      }, 60);
-    }).bind('mouseup mouseleave touchend', function() {
-      $(this).removeClass('active');
-        clearInterval(timeOut);
-      });
-    });
-</script>
 </html>
