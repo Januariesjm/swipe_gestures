@@ -335,8 +335,8 @@ function updateSwipeData(
   scrollUpTime,
   scrollDownTime,
   totalNumberOfClicks,
-  maxSwipeSpeed,
-  minSwipeSpeed
+  minSwipeSpeed,
+  maxSwipeSpeed
 ) {
   document.getElementById('zoomIn').value = calculateZoomIn(swipeDistanceX, swipeDistanceY, totalTimeTaken);
   document.getElementById('zoomOut').value = calculateZoomOut(swipeDistanceX, swipeDistanceY, totalTimeTaken);
