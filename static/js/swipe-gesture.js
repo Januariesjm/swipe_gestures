@@ -314,7 +314,7 @@ function calculateMaxSwipeSpeed(velocity, maxSwipeSpeed) {
 }
 
 // Function to calculate min swipe speed
-function calculateMinSwipeSpeed(velocity, minSwipeSpeed) {
+function calculateMinSwipeSpeed(velocity) {
   // Assuming minSwipeSpeed is already tracked
   if (isNaN(velocity)) {
     return minSwipeSpeed || 0;
@@ -353,8 +353,8 @@ function updateSwipeData(
 
   document.getElementById('totalClicks').value = calculateTotalClicks(totalNumberOfClicks);
   document.getElementById('velocity').value = calculateVelocity(swipeDistanceX, swipeDistanceY, totalTimeTaken) || 0; 
-  document.getElementById('maxSwipeSpeed').value = calculateMaxSwipeSpeed(calculateVelocity(swipeDistanceX, swipeDistanceY, totalTimeTaken), maxSwipeSpeed); 
-  document.getElementById('minSwipeSpeed').value = calculateMinSwipeSpeed(calculateVelocity(swipeDistanceX, swipeDistanceY, totalTimeTaken), minSwipeSpeed);
+  document.getElementById('maxSwipeSpeed').value = calculateMaxSwipeSpeed(calculateVelocity(swipeDistanceX, swipeDistanceY, totalTimeTaken), Math.max(velocity)); 
+  document.getElementById('minSwipeSpeed').value = calculateMinSwipeSpeed(calculateVelocity(swipeDistanceX, swipeDistanceY, totalTimeTaken), Math.min(velocity));
 
   // You can send this data to the server using JavaScript fetch or XMLHttpRequest
   // Example using fetch:
