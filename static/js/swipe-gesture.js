@@ -235,11 +235,9 @@ document.addEventListener('touchend', (event) => {
 
 // Function to calculate velocity
 function calculateVelocity(swipeDistanceX, swipeDistanceY, totalTimeTaken) {
-  const speed = Math.sqrt((swipeDistanceX ** 2) + (swipeDistanceY ** 2)) / totalTimeTaken;
-  const direction = Math.atan2(swipeDistanceY, swipeDistanceX);
-  return { speed, direction };
+  // Replace this with your actual velocity calculation logic
+  return Math.sqrt((swipeDistanceX ** 2) + (swipeDistanceY ** 2)) / totalTimeTaken;
 }
-
 
 // Function to calculate zoom in
 function calculateZoomIn(swipeDistanceX, swipeDistanceY, totalTimeTaken) {
@@ -308,22 +306,13 @@ function calculateTotalTimeTaken(totalTimeTaken) {
 
 // Function to calculate max swipe speed
 function calculateMaxSwipeSpeed(velocity, maxSwipeSpeed) {
-  let maximum = Math.max(velocity, maxSwipeSpeed);
-  // Math.min(10,3,8,1,33)
-  let minimum = Math.min(velocity, maxSwipeSpeed);
-  let maxSwipeSpeed =  ([maximum, minimum]); 
-  return result;
-};
-
-
+  return Math.max(velocity, maxSwipeSpeed);
+}
 
 // Function to calculate min swipe speed
 function calculateMinSwipeSpeed(velocity, minSwipeSpeed) {
-  let maximum = Math.max(velocity, minSwipeSpeed);
-  let minimum = Math.min(velocity, minSwipeSpeed);
-  let minSwipeSpeed =  ([maximum, minimum]); 
-  return result;}
-
+  return Math.min(velocity, minSwipeSpeed);
+}
 
 // Function to update hidden form fields with swipe gesture data
 function updateSwipeData(
@@ -338,21 +327,9 @@ function updateSwipeData(
   scrollDownTime,
   totalNumberOfClicks,
   maxSwipeSpeed,
-  minSwipeSpeed
+  minSwipeSpeed,
+  velocity // Added velocity parameter
 ) {
-  const velocityData = calculateVelocity(swipeDistanceX, swipeDistanceY, totalTimeTaken);
-
-  document.getElementById('velocity').value = velocityData.speed || 0;
-  document.getElementById('direction').value = velocityData.direction || 0;
-
-  // Calculate max and min swipe speeds
-  const currentSpeed = velocityData.speed || 0;
-  maxSwipeSpeed = Math.max(currentSpeed, maxSwipeSpeed);
-  minSwipeSpeed = Math.min(currentSpeed, minSwipeSpeed);
-
-  document.getElementById('maxSwipeSpeed').value = maxSwipeSpeed;
-  document.getElementById('minSwipeSpeed').value = minSwipeSpeed;
-
   document.getElementById('zoomIn').value = calculateZoomIn(swipeDistanceX, swipeDistanceY, totalTimeTaken);
   document.getElementById('zoomOut').value = calculateZoomOut(swipeDistanceX, swipeDistanceY, totalTimeTaken);
   document.getElementById('swipeWidth').value = Math.sqrt(swipeDistanceX * swipeDistanceX + swipeDistanceY * swipeDistanceY);
@@ -367,6 +344,9 @@ function updateSwipeData(
   document.getElementById('scrollDown').value = calculateScrollDown(swipeDistanceX, swipeDistanceY, totalTimeTaken);
 
   document.getElementById('totalClicks').value = calculateTotalClicks(totalNumberOfClicks);
+  document.getElementById('velocity').value = velocity || 0; // Use the provided velocity
+  document.getElementById('maxSwipeSpeed').value = calculateMaxSwipeSpeed(velocity, maxSwipeSpeed);
+  document.getElementById('minSwipeSpeed').value = calculateMinSwipeSpeed(velocity, minSwipeSpeed);
 
   // You can send this data to the server using JavaScript fetch or XMLHttpRequest
   // Example using fetch:
@@ -389,4 +369,5 @@ function updateSwipeData(
       console.error('Network error:', error);
     });
 }
+
 
