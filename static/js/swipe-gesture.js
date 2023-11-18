@@ -304,24 +304,6 @@ function calculateTotalTimeTaken(totalTimeTaken) {
   return totalTimeTaken || 0;
 }
 
-// Function to calculate max swipe speed
-function calculateMaxSwipeSpeed(velocity, maxSwipeSpeed) {
-  let maximum = Math.max(velocity, maxSwipeSpeed);
-  // Math.min(10,3,8,1,33)
-  let minimum = Math.min(velocity, maxSwipeSpeed);
-  let maxSwipeSpeed =  ([maximum, minimum]); 
-  return result;
-};
-
-
-
-// Function to calculate min swipe speed
-function calculateMinSwipeSpeed(velocity, minSwipeSpeed) {
-  let maximum = Math.max(velocity, minSwipeSpeed);
-  let minimum = Math.min(velocity, minSwipeSpeed);
-  let minSwipeSpeed =  ([maximum, minimum]); 
-  return result;}
-
 
 // Function to calculate max swipe speed
 function calculateMaxSwipeSpeed(velocities) {
