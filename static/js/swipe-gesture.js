@@ -245,8 +245,8 @@ function updateSwipeData(
 
   document.getElementById('totalClicks').value = calculateTotalClicks(totalNumberOfClicks);
   document.getElementById('velocity').value = calculateVelocity(swipeDistanceX, swipeDistanceY, totalTimeTaken) || 0;
-  document.getElementById('maxSwipeSpeed').value = maxSwipeSpeed;
-  document.getElementById('minSwipeSpeed').value = minSwipeSpeed;
+  document.getElementById('maxSwipeSpeed').value = maxSwipeSpeed !== undefined ? maxSwipeSpeed : 0;
+  document.getElementById('minSwipeSpeed').value = minSwipeSpeed !== undefined ? minSwipeSpeed : 0;
 
   // You can send this data to the server using JavaScript fetch or XMLHttpRequest
   // Example using fetch:
