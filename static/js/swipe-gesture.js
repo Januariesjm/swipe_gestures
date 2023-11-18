@@ -38,24 +38,72 @@ function calculateMinSwipeSpeed(velocity, minSwipeSpeed) {
 // Function to handle touch end for zoom in
 function handleTouchEndZoomIn(event) {
   if (zoomInStartX !== 0 && zoomInStartY !== 0) {
-    // ... (Your existing code)
+    const zoomInEndX = event.changedTouches[0].clientX;
+    const zoomInEndY = event.changedTouches[0].clientY;
+    const zoomInEndTime = new Date().getTime();
 
-    // Call the function to update max and min swipe speeds
-    minSwipeSpeed = calculateMinSwipeSpeed(calculateVelocity(swipeDistanceX, swipeDistanceY, zoomInTime), minSwipeSpeed);
-    maxSwipeSpeed = calculateMaxSwipeSpeed(calculateVelocity(swipeDistanceX, swipeDistanceY, zoomInTime), maxSwipeSpeed);
+    // Calculate the distance swiped in X and Y directions for zoom in
+    const swipeDistanceX = zoomInEndX - zoomInStartX;
+    const swipeDistanceY = zoomInEndY - zoomInStartY;
+
+    // Calculate the time taken for the zoom in gesture in milliseconds
+    const zoomInTime = zoomInEndTime - zoomInStartTime;
+
+    if (swipeDistanceX > 0 && swipeDistanceY > 0) {
+      // It's a zoom in gesture
+      updateSwipeData(
+        1,
+        0,
+        swipeDistanceX,
+        swipeDistanceY,
+        zoomInTime,
+        0,
+        0,
+        0,
+        0,
+        0,
+        calculateMaxSwipeSpeed(calculateVelocity(swipeDistanceX, swipeDistanceY, zoomInTime), maxSwipeSpeed),
+        calculateMinSwipeSpeed(calculateVelocity(swipeDistanceX, swipeDistanceY, zoomInTime), minSwipeSpeed)
+      );
+    }
   }
 }
 
 // Function to handle touch end for zoom out
 function handleTouchEndZoomOut(event) {
   if (zoomOutStartX !== 0 && zoomOutStartY !== 0) {
-    // ... (Your existing code)
+    const zoomOutEndX = event.changedTouches[0].clientX;
+    const zoomOutEndY = event.changedTouches[0].clientY;
+    const zoomOutEndTime = new Date().getTime();
 
-    // Call the function to update max and min swipe speeds
-    minSwipeSpeed = calculateMinSwipeSpeed(calculateVelocity(swipeDistanceX, swipeDistanceY, zoomOutTime), minSwipeSpeed);
-    maxSwipeSpeed = calculateMaxSwipeSpeed(calculateVelocity(swipeDistanceX, swipeDistanceY, zoomOutTime), maxSwipeSpeed);
+    // Calculate the distance swiped in X and Y directions for zoom out
+    const swipeDistanceX = zoomOutEndX - zoomOutStartX;
+    const swipeDistanceY = zoomOutEndY - zoomOutStartY;
+
+    // Calculate the time taken for the zoom out gesture in milliseconds
+    const zoomOutTime = zoomOutEndTime - zoomOutStartTime;
+
+    if (swipeDistanceX < 0 && swipeDistanceY < 0) {
+      // It's a zoom out gesture
+      updateSwipeData(
+        0,
+        1,
+        swipeDistanceX,
+        swipeDistanceY,
+        zoomOutTime,
+        0,
+        0,
+        0,
+        0,
+        0,
+        calculateMaxSwipeSpeed(calculateVelocity(swipeDistanceX, swipeDistanceY, zoomOutTime), maxSwipeSpeed),
+        calculateMinSwipeSpeed(calculateVelocity(swipeDistanceX, swipeDistanceY, zoomOutTime), minSwipeSpeed)
+      );
+    }
   }
 }
+
+// Similar modifications for other touch end functions
 
 // Function to update hidden form fields with swipe gesture data
 function updateSwipeData(
@@ -86,9 +134,9 @@ function updateSwipeData(
   document.getElementById('scrollDown').value = calculateScrollDown(swipeDistanceX, swipeDistanceY, totalTimeTaken);
 
   document.getElementById('totalClicks').value = calculateTotalClicks(totalNumberOfClicks);
-  document.getElementById('velocity').value = calculateVelocity(swipeDistanceX, swipeDistanceY, totalTimeTaken) || 0; 
-  document.getElementById('maxSwipeSpeed').value = calculateMaxSwipeSpeed(calculateVelocity(swipeDistanceX, swipeDistanceY, totalTimeTaken), maxSwipeSpeed); 
-  document.getElementById('minSwipeSpeed').value = calculateMinSwipeSpeed(calculateVelocity(swipeDistanceX, swipeDistanceY, totalTimeTaken), minSwipeSpeed);
+  document.getElementById('velocity').value = calculateVelocity(swipeDistanceX, swipeDistanceY, totalTimeTaken) || 0;
+  document.getElementById('maxSwipeSpeed').value = maxSwipeSpeed;
+  document.getElementById('minSwipeSpeed').value = minSwipeSpeed;
 
   // You can send this data to the server using JavaScript fetch or XMLHttpRequest
   // Example using fetch:
@@ -100,9 +148,9 @@ function updateSwipeData(
     .then(data => {
       console.log('Server response:', data);
       if (data.status === 'success') {
-       // console.log('Swipe data sent successfully:', data.message);
-        //const successMessage = document.getElementById('successMessage');
-        //successMessage.style.display = 'block';
+        // console.log('Swipe data sent successfully:', data.message);
+        // const successMessage = document.getElementById('successMessage');
+        // successMessage.style.display = 'block';
       } else {
         console.error('Error processing swipe data:', data.message);
       }
@@ -133,93 +181,59 @@ document.addEventListener('touchend', (event) => {
   handleTouchEndScrollDown(event);
 });
 
-
 // Function to calculate velocity
 function calculateVelocity(swipeDistanceX, swipeDistanceY, totalTimeTaken) {
-  // Replace this with your actual velocity calculation logic
   return Math.sqrt((swipeDistanceX ** 2) + (swipeDistanceY ** 2)) / totalTimeTaken;
 }
 
 // Function to calculate zoom in
 function calculateZoomIn(swipeDistanceX, swipeDistanceY, totalTimeTaken) {
-  // Assuming a significant swipe to the right and downward
   if (swipeDistanceX > 50 && swipeDistanceY > 50) {
-    // Calculate the zoom in factor or speed based on the swipe distance and time taken
     return Math.sqrt(swipeDistanceX * swipeDistanceX + swipeDistanceY * swipeDistanceY) / totalTimeTaken;
   } else {
-    // Return 0 if the swipe doesn't meet the criteria for a zoom in gesture
     return 0;
   }
 }
 
 // Function to calculate zoom out
 function calculateZoomOut(swipeDistanceX, swipeDistanceY, totalTimeTaken) {
-  // Assuming a significant swipe to the left and upward
   if (swipeDistanceX < -50 && swipeDistanceY < -50) {
-    // Calculate the zoom out factor or speed based on the swipe distance and time taken
     return Math.sqrt(swipeDistanceX * swipeDistanceX + swipeDistanceY * swipeDistanceY) / totalTimeTaken;
   } else {
-    // Return 0 if the swipe doesn't meet the criteria for a zoom out gesture
     return 0;
   }
 }
 
 // Function to calculate left to right swipe
 function calculateLeftToRight(swipeDistanceX, swipeDistanceY, totalTimeTaken) {
-  // Assuming a significant swipe to the right in X direction
   return swipeDistanceX > 50 && Math.abs(swipeDistanceY) < 50 ? swipeDistanceX / totalTimeTaken : 0;
 }
 
 // Function to calculate right to left swipe
 function calculateRightToLeft(swipeDistanceX, swipeDistanceY, totalTimeTaken) {
-  // Assuming a significant swipe to the left in X direction
   return swipeDistanceX < -50 && Math.abs(swipeDistanceY) < 50 ? Math.abs(swipeDistanceX) / totalTimeTaken : 0;
 }
 
 // Function to calculate scroll up
 function calculateScrollUp(swipeDistanceX, swipeDistanceY, totalTimeTaken) {
-  // Assuming a significant swipe upward in Y direction
   return swipeDistanceY > 50 && Math.abs(swipeDistanceX) < 50 ? swipeDistanceY / totalTimeTaken : 0;
 }
 
 // Function to calculate scroll down
 function calculateScrollDown(swipeDistanceX, swipeDistanceY, totalTimeTaken) {
-  // Assuming a significant swipe downward in Y direction
   if (swipeDistanceY < -50 && Math.abs(swipeDistanceX) < 50) {
-    // Calculate the scroll down speed as the absolute value of swipeDistanceY divided by totalTimeTaken
     return Math.abs(swipeDistanceY) / totalTimeTaken;
   } else {
-    // Return 0 if the swipe doesn't meet the criteria for a significant downward swipe
     return 0;
   }
 }
+
 // Function to calculate total number of clicks
 function calculateTotalClicks(totalNumberOfClicks) {
-  // Assuming totalNumberOfClicks is already tracked
   return totalNumberOfClicks || 0;
 }
 
 // Function to calculate total time taken
 function calculateTotalTimeTaken(totalTimeTaken) {
-  // Assuming totalTimeTaken is already tracked
   return totalTimeTaken || 0;
 }
-
-// Function to calculate max swipe speed
-function calculateMaxSwipeSpeed(velocity, maxSwipeSpeed) {
-  let maximum = Math.max(velocity, maxSwipeSpeed);
-  // Math.min(10,3,8,1,33)
-  let minimum = Math.min(velocity, maxSwipeSpeed);
-  let maxSwipeSpeed =  ([maximum, minimum]); 
-  return result;
-};
-
-
-
-// Function to calculate min swipe speed
-function calculateMinSwipeSpeed(velocity, minSwipeSpeed) {
-  let maximum = Math.max(velocity, minSwipeSpeed);
-  let minimum = Math.min(velocity, minSwipeSpeed);
-  let minSwipeSpeed =  ([maximum, minimum]); 
-  return result;}
-
