@@ -36,6 +36,11 @@ function calculateMinSwipeSpeed(velocity, minSwipeSpeed) {
 }
 
 // Function to handle touch end for zoom in
+function handleTouchStartZoomIn(event) {
+  zoomInStartX = event.touches[0].clientX;
+  zoomInStartY = event.touches[0].clientY;
+  zoomInStartTime = new Date().getTime();
+}
 function handleTouchEndZoomIn(event) {
   if (zoomInStartX !== 0 && zoomInStartY !== 0) {
     const zoomInEndX = event.changedTouches[0].clientX;
@@ -70,11 +75,18 @@ function handleTouchEndZoomIn(event) {
 }
 
 // Function to handle touch end for zoom out
+function handleTouchStartZoomOut(event) {
+  zoomOutStartX = event.touches[0].clientX;
+  zoomOutStartY = event.touches[0].clientY;
+  zoomOutStartTime = new Date().getTime();
+}
+
 function handleTouchEndZoomOut(event) {
   if (zoomOutStartX !== 0 && zoomOutStartY !== 0) {
     const zoomOutEndX = event.changedTouches[0].clientX;
     const zoomOutEndY = event.changedTouches[0].clientY;
     const zoomOutEndTime = new Date().getTime();
+
 
     // Calculate the distance swiped in X and Y directions for zoom out
     const swipeDistanceX = zoomOutEndX - zoomOutStartX;
@@ -104,7 +116,105 @@ function handleTouchEndZoomOut(event) {
 }
 
 // Similar modifications for other touch end functions
+// Function to handle touch start for left to right swipe
+function handleTouchStartLeftToRight(event) {
+  leftToRightStartX = event.touches[0].clientX;
+  leftToRightStartTime = new Date().getTime();
+}
 
+// Function to handle touch end for left to right swipe
+function handleTouchEndLeftToRight(event) {
+  if (leftToRightStartX !== 0) {
+    const leftToRightEndX = event.changedTouches[0].clientX;
+    const leftToRightEndTime = new Date().getTime();
+
+    // Calculate the distance swiped in X direction for left to right swipe
+    const swipeDistanceX = leftToRightEndX - leftToRightStartX;
+
+    // Calculate the time taken for the left to right swipe gesture in milliseconds
+    const leftToRightTime = leftToRightEndTime - leftToRightStartTime;
+
+    if (swipeDistanceX > 0) {
+      // It's a left to right swipe gesture
+      updateSwipeData(1, 0, swipeDistanceX, 0, leftToRightTime);
+    }
+  }
+}
+
+// Function to handle touch start for right to left swipe
+function handleTouchStartRightToLeft(event) {
+  rightToLeftStartX = event.touches[0].clientX;
+  rightToLeftStartTime = new Date().getTime();
+}
+
+// Function to handle touch end for right to left swipe
+function handleTouchEndRightToLeft(event) {
+  if (rightToLeftStartX !== 0) {
+    const rightToLeftEndX = event.changedTouches[0].clientX;
+    const rightToLeftEndTime = new Date().getTime();
+
+    // Calculate the distance swiped in X direction for right to left swipe
+    const swipeDistanceX = rightToLeftStartX - rightToLeftEndX;
+
+    // Calculate the time taken for the right to left swipe gesture in milliseconds
+    const rightToLeftTime = rightToLeftEndTime - rightToLeftStartTime;
+
+    if (swipeDistanceX > 0) {
+      // It's a right to left swipe gesture
+      updateSwipeData(0, 1, swipeDistanceX, 0, rightToLeftTime);
+    }
+  }
+}
+
+// Function to handle touch start for scroll up
+function handleTouchStartScrollUp(event) {
+  scrollUpStartY = event.touches[0].clientY;
+  scrollUpStartTime = new Date().getTime();
+}
+
+// Function to handle touch end for scroll up
+function handleTouchEndScrollUp(event) {
+  if (scrollUpStartY !== 0) {
+    const scrollUpEndY = event.changedTouches[0].clientY;
+    const scrollUpEndTime = new Date().getTime();
+
+    // Calculate the distance swiped in Y direction for scroll up
+    const swipeDistanceY = scrollUpStartY - scrollUpEndY;
+
+    // Calculate the time taken for the scroll up gesture in milliseconds
+    const scrollUpTime = scrollUpEndTime - scrollUpStartTime;
+
+    if (swipeDistanceY > 0) {
+      // It's a scroll up gesture
+      updateSwipeData(0, 0, 0, swipeDistanceY, scrollUpTime);
+    }
+  }
+}
+
+// Function to handle touch start for scroll down
+function handleTouchStartScrollDown(event) {
+  scrollDownStartY = event.touches[0].clientY;
+  scrollDownStartTime = new Date().getTime();
+}
+
+// Function to handle touch end for scroll down
+function handleTouchEndScrollDown(event) {
+  if (scrollDownStartY !== 0) {
+    const scrollDownEndY = event.changedTouches[0].clientY;
+    const scrollDownEndTime = new Date().getTime();
+
+    // Calculate the distance swiped in Y direction for scroll down
+    const swipeDistanceY = scrollDownEndY - scrollDownStartY;
+
+    // Calculate the time taken for the scroll down gesture in milliseconds
+    const scrollDownTime = scrollDownEndTime - scrollDownStartTime;
+
+    if (swipeDistanceY > 0) {
+      // It's a scroll down gesture
+      updateSwipeData(0, 0, 0, swipeDistanceY, scrollDownTime);
+    }
+  }
+}
 // Function to update hidden form fields with swipe gesture data
 function updateSwipeData(
   zoomIn,
