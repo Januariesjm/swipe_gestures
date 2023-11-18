@@ -297,9 +297,9 @@ function calculateScrollDown(swipeDistanceX, swipeDistanceY, totalTimeTaken) {
   }
 }
 // Function to calculate total number of clicks
-function calculateTotalClicks() {
-  return totalClicksCounter;
-}
+//function calculateTotalClicks() {
+  //return totalClicksCounter;
+//}
 
 
 // Function to calculate total time taken
@@ -345,7 +345,7 @@ function updateSwipeData(
   document.getElementById('scrollUp').value = calculateScrollUp(swipeDistanceX, swipeDistanceY, totalTimeTaken);
   document.getElementById('scrollDown').value = calculateScrollDown(swipeDistanceX, swipeDistanceY, totalTimeTaken);
 
-  document.getElementById('totalClicks').value = calculateTotalClicks();
+  //document.getElementById('totalClicks').value = calculateTotalClicks();
   document.getElementById('velocity').value = calculateVelocity(swipeDistanceX, swipeDistanceY, totalTimeTaken) || 0;
   document.getElementById('maxSwipeSpeed').value = calculateMaxSwipeSpeed(calculateVelocity(swipeDistanceX, swipeDistanceY, totalTimeTaken));
   document.getElementById('minSwipeSpeed').value = calculateMinSwipeSpeed(calculateVelocity(swipeDistanceX, swipeDistanceY, totalTimeTaken));
