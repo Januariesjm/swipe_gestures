@@ -387,9 +387,4 @@ function updateSwipeData(
     });
 }
 
-// Add the velocity to the velocities array when updating swipe data
-updateSwipeData(  zoomIn, zoomOut, swipeDistanceX, swipeDistanceY, totalTimeTaken, 
-  leftToRightTime, rightToLeftTime,scrollUpTime, scrollDownTime, totalNumberOfClicks, 
-  maxSwipeSpeed, minSwipeSpeed, velocities, velocities);
-
 
