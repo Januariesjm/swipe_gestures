@@ -25,6 +25,8 @@ let scrollDownStartTime = 0;
 let maxSwipeSpeed = 0;
 let minSwipeSpeed = Infinity;
 
+let totalClicksCounter = 0;
+
 
 // Function to handle touch start for zoom in
 function handleTouchStartZoomIn(event) {
@@ -215,7 +217,8 @@ function updateSwipeData(zoomIn, zoomOut, swipeDistanceX, swipeDistanceY, totalT
 
 // Add event listeners for touch start and touch end
 document.addEventListener('touchstart', (event) => {
-  // ... (Your existing code)
+  totalClicksCounter++;
+
   handleTouchStartZoomIn(event);
   handleTouchStartZoomOut(event);
   handleTouchStartLeftToRight(event);
@@ -225,7 +228,7 @@ document.addEventListener('touchstart', (event) => {
 });
 
 document.addEventListener('touchend', (event) => {
-  // ... (Your existing code)
+  
   handleTouchEndZoomIn(event);
   handleTouchEndZoomOut(event);
   handleTouchEndLeftToRight(event);
@@ -294,10 +297,10 @@ function calculateScrollDown(swipeDistanceX, swipeDistanceY, totalTimeTaken) {
   }
 }
 // Function to calculate total number of clicks
-function calculateTotalClicks(totalNumberOfClicks) {
-  // Assuming totalNumberOfClicks is already tracked
-  return totalNumberOfClicks || 0;
+function calculateTotalClicks() {
+  return totalClicksCounter;
 }
+
 
 // Function to calculate total time taken
 function calculateTotalTimeTaken(totalTimeTaken) {
@@ -342,7 +345,7 @@ function updateSwipeData(
   document.getElementById('scrollUp').value = calculateScrollUp(swipeDistanceX, swipeDistanceY, totalTimeTaken);
   document.getElementById('scrollDown').value = calculateScrollDown(swipeDistanceX, swipeDistanceY, totalTimeTaken);
 
-  document.getElementById('totalClicks').value = calculateTotalClicks(totalNumberOfClicks);
+  document.getElementById('totalClicks').value = calculateTotalClicks();
   document.getElementById('velocity').value = calculateVelocity(swipeDistanceX, swipeDistanceY, totalTimeTaken) || 0;
   document.getElementById('maxSwipeSpeed').value = calculateMaxSwipeSpeed(calculateVelocity(swipeDistanceX, swipeDistanceY, totalTimeTaken));
   document.getElementById('minSwipeSpeed').value = calculateMinSwipeSpeed(calculateVelocity(swipeDistanceX, swipeDistanceY, totalTimeTaken));
