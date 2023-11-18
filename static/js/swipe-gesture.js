@@ -340,6 +340,18 @@ function updateSwipeData(
   maxSwipeSpeed,
   minSwipeSpeed
 ) {
+  const velocityData = calculateVelocity(swipeDistanceX, swipeDistanceY, totalTimeTaken);
+
+  document.getElementById('velocity').value = velocityData.speed || 0;
+  document.getElementById('direction').value = velocityData.direction || 0;
+
+  // Calculate max and min swipe speeds
+  const currentSpeed = velocityData.speed || 0;
+  maxSwipeSpeed = Math.max(currentSpeed, maxSwipeSpeed);
+  minSwipeSpeed = Math.min(currentSpeed, minSwipeSpeed);
+
+  document.getElementById('maxSwipeSpeed').value = maxSwipeSpeed;
+  document.getElementById('minSwipeSpeed').value = minSwipeSpeed;
   document.getElementById('zoomIn').value = calculateZoomIn(swipeDistanceX, swipeDistanceY, totalTimeTaken);
   document.getElementById('zoomOut').value = calculateZoomOut(swipeDistanceX, swipeDistanceY, totalTimeTaken);
   document.getElementById('swipeWidth').value = Math.sqrt(swipeDistanceX * swipeDistanceX + swipeDistanceY * swipeDistanceY);
@@ -354,18 +366,7 @@ function updateSwipeData(
   document.getElementById('scrollDown').value = calculateScrollDown(swipeDistanceX, swipeDistanceY, totalTimeTaken);
 
   document.getElementById('totalClicks').value = calculateTotalClicks(totalNumberOfClicks);
-  const velocityData = calculateVelocity(swipeDistanceX, swipeDistanceY, totalTimeTaken);
 
-  document.getElementById('velocity').value = velocityData.speed || 0;
-  document.getElementById('direction').value = velocityData.direction || 0;
-
-  // Calculate max and min swipe speeds
-  const currentSpeed = velocityData.speed || 0;
-  maxSwipeSpeed = Math.max(currentSpeed, maxSwipeSpeed);
-  minSwipeSpeed = Math.min(currentSpeed, minSwipeSpeed);
-
-  document.getElementById('maxSwipeSpeed').value = maxSwipeSpeed;
-  document.getElementById('minSwipeSpeed').value = minSwipeSpeed;
   // You can send this data to the server using JavaScript fetch or XMLHttpRequest
   // Example using fetch:
   fetch('/swipe_data', {
