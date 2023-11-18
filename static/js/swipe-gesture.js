@@ -235,9 +235,11 @@ document.addEventListener('touchend', (event) => {
 
 // Function to calculate velocity
 function calculateVelocity(swipeDistanceX, swipeDistanceY, totalTimeTaken) {
-  // Replace this with your actual velocity calculation logic
-  return Math.sqrt((swipeDistanceX ** 2) + (swipeDistanceY ** 2)) / totalTimeTaken;
+  const speed = Math.sqrt((swipeDistanceX ** 2) + (swipeDistanceY ** 2)) / totalTimeTaken;
+  const direction = Math.atan2(swipeDistanceY, swipeDistanceX);
+  return { speed, direction };
 }
+
 
 // Function to calculate zoom in
 function calculateZoomIn(swipeDistanceX, swipeDistanceY, totalTimeTaken) {
@@ -352,10 +354,18 @@ function updateSwipeData(
   document.getElementById('scrollDown').value = calculateScrollDown(swipeDistanceX, swipeDistanceY, totalTimeTaken);
 
   document.getElementById('totalClicks').value = calculateTotalClicks(totalNumberOfClicks);
-  document.getElementById('velocity').value = calculateVelocity(swipeDistanceX, swipeDistanceY, totalTimeTaken) || 0; 
-  document.getElementById('maxSwipeSpeed').value = calculateMaxSwipeSpeed(calculateVelocity(swipeDistanceX, swipeDistanceY, totalTimeTaken), maxSwipeSpeed); 
-  document.getElementById('minSwipeSpeed').value = calculateMinSwipeSpeed(calculateVelocity(swipeDistanceX, swipeDistanceY, totalTimeTaken), minSwipeSpeed);
+  const velocityData = calculateVelocity(swipeDistanceX, swipeDistanceY, totalTimeTaken);
 
+  document.getElementById('velocity').value = velocityData.speed || 0;
+  document.getElementById('direction').value = velocityData.direction || 0;
+
+  // Calculate max and min swipe speeds
+  const currentSpeed = velocityData.speed || 0;
+  maxSwipeSpeed = Math.max(currentSpeed, maxSwipeSpeed);
+  minSwipeSpeed = Math.min(currentSpeed, minSwipeSpeed);
+
+  document.getElementById('maxSwipeSpeed').value = maxSwipeSpeed;
+  document.getElementById('minSwipeSpeed').value = minSwipeSpeed;
   // You can send this data to the server using JavaScript fetch or XMLHttpRequest
   // Example using fetch:
   fetch('/swipe_data', {
