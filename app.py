@@ -96,7 +96,7 @@ def user_info():
                    #password=DATABASE_PASSWORD,
                    #host=DATABASE_HOST,
                    #port=DATABASE_PORT
-         #)
+             #)
             cur = conn.cursor()
 
             cur.execute(
@@ -186,12 +186,12 @@ def swipe_gesture():
         # Store the swipe gesture data in the database
         conn = psycopg2.connect(DATABASE_URL)
         #conn = psycopg2.connect(
-            #database=DATABASE_NAME,
-            #user=DATABASE_USER,
-            #password=DATABASE_PASSWORD,
-            #host=DATABASE_HOST,
-            #port=DATABASE_PORT
-         #)
+           # database=DATABASE_NAME,
+           # user=DATABASE_USER,
+           # password=DATABASE_PASSWORD,
+           #  host=DATABASE_HOST,
+           # port=DATABASE_PORT
+        # )
         cur = conn.cursor()
 
         cur.execute("""
