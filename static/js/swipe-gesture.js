@@ -276,7 +276,13 @@ function calculateLeftToRight(swipeDistanceX, swipeDistanceY, totalTimeTaken) {
 // Function to calculate right to left swipe
 function calculateRightToLeft(swipeDistanceX, swipeDistanceY, totalTimeTaken) {
   // Assuming a significant swipe to the left in X direction
-  return swipeDistanceX < -50 && Math.abs(swipeDistanceY) < 50 ? Math.abs(swipeDistanceX) / totalTimeTaken : 0;
+  if (swipeDistanceX < -50 && Math.abs(swipeDistanceY) < 50) {
+    // Calculate the right to left speed as the absolute value of swipeDistanceX divided by totalTimeTaken
+    return Math.abs(swipeDistanceX) / totalTimeTaken;
+  } else {
+    // Return 0 if the swipe doesn't meet the criteria for a right to left swipe gesture
+    return 0;
+  }
 }
 
 // Function to calculate scroll up
