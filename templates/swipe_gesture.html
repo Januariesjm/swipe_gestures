@@ -160,34 +160,33 @@
 
     .small-image {
       width: 20%;
-      height:auto;
+      height: auto;
       max-width: 20%;
       max-height: 5%
     }
 
     /* Apply responsive design for smaller screens */
-.container1 {
-  flex-direction: column;
-  padding: 10px;
-  max-width: 100%;
-  margin: 0 auto;
-}
+    .container1 {
+      flex-direction: column;
+      padding: 10px;
+      max-width: 100%;
+      margin: 0 auto;
+    }
 
 
 
-.form-control {
-  width: 100%; 
-}
+    .form-control {
+      width: 100%;
+    }
 
-.carousel-inner {
-        height: 100%;
-      }
+    .carousel-inner {
+      height: 100%;
+    }
 
-.carousel{
-  height: 100%;
-  width: 100%;
-}
-
+    .carousel {
+      height: 100%;
+      width: 100%;
+    }
   </style>
 
 
@@ -305,10 +304,7 @@
       </div>
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-            <rect width="100%" height="100%" fill="var(--bs-secondary-color)" />
-          </svg>
+          <img src="{{ url_for('static', filename='images/iphone-texting.png') }}" class="d-block w-100" alt="Slide 1">
           <div class="container">
             <div class="carousel-caption text-start">
               <h1>Example headline.</h1>
@@ -318,10 +314,7 @@
           </div>
         </div>
         <div class="carousel-item">
-          <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-            <rect width="100%" height="100%" fill="var(--bs-secondary-color)" />
-          </svg>
+          <img src="{{ url_for('static', filename='images/iphone-texting.png') }}" class="d-block w-100" alt="Slide 2">
           <div class="container">
             <div class="carousel-caption">
               <h1>Another example headline.</h1>
@@ -331,10 +324,7 @@
           </div>
         </div>
         <div class="carousel-item">
-          <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-            <rect width="100%" height="100%" fill="var(--bs-secondary-color)" />
-          </svg>
+          <img src="{{ url_for('static', filename='images/iphone-texting.png') }}" class="d-block w-100" alt="Slide 3">
           <div class="container">
             <div class="carousel-caption text-end">
               <h1>One more for good measure.</h1>
@@ -363,131 +353,123 @@
 
 
       <!-- START THE FEATURETTES -->
-<form id="swipeForm" method="POST">
-  <div class="container1">
-    <!-- Add images here that the user should interact with -->
-    <!-- Add an image element with an ID for displaying the current image -->
-    <!-- Left Side -->
-    <div class="side">
-      <img class="img-thumbnail small-image"
-        src="{{ url_for('static', filename='images/iphone-texting.png') }}"
-        alt="Image 1" width="100" id="displayedImage1" name="displayedImage1" />
-      <textarea id="userInput1" class="form-control" name="user_input1" required rows="2"
-        id="fav_film" placeholder="Describe what you see in the image..."></textarea>
-      <!-- Add more images and text areas on the left side -->
-    </div>
+      <form id="swipeForm" method="POST">
+        <div class="container1">
+          <!-- Add images here that the user should interact with -->
+          <!-- Add an image element with an ID for displaying the current image -->
+          <!-- Left Side -->
+          <div class="side">
+            <img class="img-thumbnail small-image" src="{{ url_for('static', filename='images/iphone-texting.png') }}"
+              alt="Image 1" width="100" id="displayedImage1" name="displayedImage1" />
+            <textarea id="userInput1" class="form-control" name="user_input1" required rows="2" id="fav_film"
+              placeholder="Describe what you see in the image..."></textarea>
+            <!-- Add more images and text areas on the left side -->
+          </div>
 
-    <hr class="featurette-divider">
-    <div class="side left1">
-      <img class="img-thumbnail small-image"
-      src="{{ url_for('static', filename='images/iphone-texting.png') }}"
-        alt="Image 1" width="100" id="displayedImage2" name="displayedImage2" />
-      <textarea id="userInput2" class="form-control" name="user_input2" required name="user_input" rows="2"
-        id="fav_film" placeholder="Describe what you see in the image..."></textarea>
-      <!-- Add more images and text areas on the left side -->
-    </div>
+          <hr class="featurette-divider">
+          <div class="side left1">
+            <img class="img-thumbnail small-image" src="{{ url_for('static', filename='images/iphone-texting.png') }}"
+              alt="Image 1" width="100" id="displayedImage2" name="displayedImage2" />
+            <textarea id="userInput2" class="form-control" name="user_input2" required name="user_input" rows="2"
+              id="fav_film" placeholder="Describe what you see in the image..."></textarea>
+            <!-- Add more images and text areas on the left side -->
+          </div>
 
-    <hr class="featurette-divider">
-    <div class="side">
-      <img class="img-thumbnail small-image"
-      src="{{ url_for('static', filename='images/iphone-texting.png') }}"
-        alt="Image 1" width="100" id="displayedImage3" name="displayedImage3" />
-      <textarea id="userInput3" class="form-control" name="user_input3" required rows="2"
-        id="fav_film" placeholder="Describe what you see in the image..."></textarea>
-      <!-- Add more images and text areas on the left side -->
-      <hr class="featurette-divider">
-    </div>
-    <div class="side left1">
-      <img class="img-thumbnail small-image"
-      src="{{ url_for('static', filename='images/iphone-texting.png') }}"
-        alt="Image 1" width="100" id="displayedImage4" name="displayedImage4" />
-      <textarea id="userInput" class="form-control" name="user_input" required name="user_input" rows="2"
-        id="fav_film" placeholder="Describe what you see in the image..."></textarea>
-      <!-- Add more images and text areas on the left side -->
-    </div>
+          <hr class="featurette-divider">
+          <div class="side">
+            <img class="img-thumbnail small-image" src="{{ url_for('static', filename='images/iphone-texting.png') }}"
+              alt="Image 1" width="100" id="displayedImage3" name="displayedImage3" />
+            <textarea id="userInput3" class="form-control" name="user_input3" required rows="2" id="fav_film"
+              placeholder="Describe what you see in the image..."></textarea>
+            <!-- Add more images and text areas on the left side -->
+            <hr class="featurette-divider">
+          </div>
+          <div class="side left1">
+            <img class="img-thumbnail small-image" src="{{ url_for('static', filename='images/iphone-texting.png') }}"
+              alt="Image 1" width="100" id="displayedImage4" name="displayedImage4" />
+            <textarea id="userInput" class="form-control" name="user_input" required name="user_input" rows="2"
+              id="fav_film" placeholder="Describe what you see in the image..."></textarea>
+            <!-- Add more images and text areas on the left side -->
+          </div>
 
-    <hr class="featurette-divider">
-    <div class="side">
-      <img class="img-thumbnail small-image"
-      src="{{ url_for('static', filename='images/iphone-texting.png') }}"
-        alt="Image 1" width="100" id="displayedImage5" name="displayedImage5" />
-      <!-- Text area for user input -->
-      <textarea class="form-control" name="fav_film" id="fav_film" rows="2" required name="user_input"
-        id="userInput" rows="4" placeholder="Describe what you see in the image..." required></textarea>
-    </div>
+          <hr class="featurette-divider">
+          <div class="side">
+            <img class="img-thumbnail small-image" src="{{ url_for('static', filename='images/iphone-texting.png') }}"
+              alt="Image 1" width="100" id="displayedImage5" name="displayedImage5" />
+            <!-- Text area for user input -->
+            <textarea class="form-control" name="fav_film" id="fav_film" rows="2" required name="user_input"
+              id="userInput" rows="4" placeholder="Describe what you see in the image..." required></textarea>
+          </div>
 
-    <hr class="featurette-divider">
-    <div class="side left1">
-      <img class="img-thumbnail small-image"
-      src="{{ url_for('static', filename='images/iphone-texting.png') }}"
-        alt="Image 1" width="100" id="displayedImage6" name="displayedImage6" />
-      <textarea id="userInput" class="form-control" name="user_input" required name="user_input" rows="2"
-        id="fav_film" placeholder="Describe what you see in the image..."></textarea>
-    </div>
-    <!-- Add more images and text areas on the left side -->
+          <hr class="featurette-divider">
+          <div class="side left1">
+            <img class="img-thumbnail small-image" src="{{ url_for('static', filename='images/iphone-texting.png') }}"
+              alt="Image 1" width="100" id="displayedImage6" name="displayedImage6" />
+            <textarea id="userInput" class="form-control" name="user_input" required name="user_input" rows="2"
+              id="fav_film" placeholder="Describe what you see in the image..."></textarea>
+          </div>
+          <!-- Add more images and text areas on the left side -->
 
-    <hr class="featurette-divider">
-    <div class="side">
-      <img class="img-thumbnail small-image"
-      src="{{ url_for('static', filename='images/iphone-texting.png') }}"
-        alt="Image 1" width="100" id="displayedImage7" name="displayedImage7" />
-      <!-- Text area for user input -->
-      <textarea class="form-control" name="fav_film" id="fav_film" rows="2" required name="user_input"
-        id="userInput" rows="4" placeholder="Describe what you see in the image..." required></textarea>
-    </div>
+          <hr class="featurette-divider">
+          <div class="side">
+            <img class="img-thumbnail small-image" src="{{ url_for('static', filename='images/iphone-texting.png') }}"
+              alt="Image 1" width="100" id="displayedImage7" name="displayedImage7" />
+            <!-- Text area for user input -->
+            <textarea class="form-control" name="fav_film" id="fav_film" rows="2" required name="user_input"
+              id="userInput" rows="4" placeholder="Describe what you see in the image..." required></textarea>
+          </div>
 
-    <hr class="featurette-divider">
-    <div class="side">
-      <img class="img-thumbnail small-image"
-      src="{{ url_for('static', filename='images/iphone-texting.png') }}"
-        alt="Image 1" width="100" id="displayedImage8" name="displayedImage8" />
-      <textarea id="userInput" class="form-control" name="user_input" required name="user_input" rows="2"
-        id="fav_film" placeholder="Describe what you see in the image..."></textarea>
-    </div>
-    <div>
-      <!-- Add hidden fields for capturing swipe gesture data -->
-      <input type="hidden" name="swipeTime" id="swipeTime">
-      <input type="hidden" name="left_to_right" id="leftToRight">
-      <input type="hidden" name="right_to_left" id="rightToLeft">
-      <input type="hidden" name="scroll_up" id="scrollUp">
-      <input type="hidden" name="scroll_down" id="scrollDown">
-      <input type="hidden" name="zoom_in" id="zoomIn">
-      <input type="hidden" name="zoom_out" id="zoomOut">
-      <input type="hidden" name="swipe_width" id="swipeWidth">
-      <input type="hidden" name="swiping_repetitions_x_coordinate" id="swipingRepetitionsX">
-      <input type="hidden" name="swiping_repetitions_y_coordinate" id="swipingRepetitionsY">
-      <input type="hidden" name="total_number_of_clicks" id="totalClicks">
-      <input type="hidden" name="x_coordinate_clicks" id="xCoordinateClicks">
-      <input type="hidden" name="y_coordinate_clicks" id="yCoordinateClicks">
-      <input type="hidden" name="total_time_taken" id="totalTimeTaken">
-      <input type="hidden" name="velocity" id="velocity">
-      <input type="hidden" name="device_screen_width" id="screenWidth">
-      <input type="hidden" name="max_swipe_speed" id="maxSwipeSpeed">
-      <input type="hidden" name="min_swipe_speed" id="minSwipeSpeed">
-      <input type="hidden" name="finger_size" id="fingerSize">
-    </div>
-    <hr class="featurette-divider">
-    <!-- Add a submit button to record user data -->
-    <button type="submit" name="submit" id="submitButton">Submit</button>
+          <hr class="featurette-divider">
+          <div class="side">
+            <img class="img-thumbnail small-image" src="{{ url_for('static', filename='images/iphone-texting.png') }}"
+              alt="Image 1" width="100" id="displayedImage8" name="displayedImage8" />
+            <textarea id="userInput" class="form-control" name="user_input" required name="user_input" rows="2"
+              id="fav_film" placeholder="Describe what you see in the image..."></textarea>
+          </div>
+          <div>
+            <!-- Add hidden fields for capturing swipe gesture data -->
+            <input type="hidden" name="swipeTime" id="swipeTime">
+            <input type="hidden" name="left_to_right" id="leftToRight">
+            <input type="hidden" name="right_to_left" id="rightToLeft">
+            <input type="hidden" name="scroll_up" id="scrollUp">
+            <input type="hidden" name="scroll_down" id="scrollDown">
+            <input type="hidden" name="zoom_in" id="zoomIn">
+            <input type="hidden" name="zoom_out" id="zoomOut">
+            <input type="hidden" name="swipe_width" id="swipeWidth">
+            <input type="hidden" name="swiping_repetitions_x_coordinate" id="swipingRepetitionsX">
+            <input type="hidden" name="swiping_repetitions_y_coordinate" id="swipingRepetitionsY">
+            <input type="hidden" name="total_number_of_clicks" id="totalClicks">
+            <input type="hidden" name="x_coordinate_clicks" id="xCoordinateClicks">
+            <input type="hidden" name="y_coordinate_clicks" id="yCoordinateClicks">
+            <input type="hidden" name="total_time_taken" id="totalTimeTaken">
+            <input type="hidden" name="velocity" id="velocity">
+            <input type="hidden" name="device_screen_width" id="screenWidth">
+            <input type="hidden" name="max_swipe_speed" id="maxSwipeSpeed">
+            <input type="hidden" name="min_swipe_speed" id="minSwipeSpeed">
+            <input type="hidden" name="finger_size" id="fingerSize">
+          </div>
+          <hr class="featurette-divider">
+          <!-- Add a submit button to record user data -->
+          <button type="submit" name="submit" id="submitButton">Submit</button>
 
-    <div id="successMessage" style="display: none;" class="alert alert-success">
-      Data received and processed successfully.
-    </div>
-  </div>
-</form>
-<script src="../static/js/swipe-gesture.js" defer></script>
+          <div id="successMessage" style="display: none;" class="alert alert-success">
+            Data received and processed successfully.
+          </div>
+        </div>
+      </form>
+      <script src="../static/js/swipe-gesture.js" defer></script>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    setupSwipeListeners();
-  });
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          setupSwipeListeners();
+        });
 
-  // Disable the back button when the user navigates away
-  history.pushState(null, null, document.URL);
-  window.addEventListener('popstate', function () {
-      history.pushState(null, null, document.URL);
-  });
-</script>
+        // Disable the back button when the user navigates away
+        history.pushState(null, null, document.URL);
+        window.addEventListener('popstate', function () {
+          history.pushState(null, null, document.URL);
+        });
+      </script>
 
 
       <hr class="featurette-divider">
@@ -506,7 +488,7 @@
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
     crossorigin="anonymous"></script>
 
-    <script src="../static/js/swipe-gesture.js" defer></script>
+  <script src="../static/js/swipe-gesture.js" defer></script>
 </body>
 
 </html>
