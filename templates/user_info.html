@@ -185,8 +185,6 @@
 <script src="/static/js/spinbox.js"></script>
 
 <script>
-    //function to handle age increment
-
     // Function to handle the "Next" button click
     function handleNextButtonClick() {
         var valid = true;
@@ -292,6 +290,7 @@
         $("#form")[0].submit();
     });
 
+    // Change event handlers for select elements
     $("#gender").change(() => {
         if ($("#gender").val() !== '0') {
             $("#selectGender").hide();
@@ -303,10 +302,40 @@
     $('#age').change(() => {
         if ($('#age').val() < 1) {
             $("#validAge").show();
-            $('input[type="submit"]').prop("disabled", true);
         } else {
             $("#validAge").hide();
-            $('input[type="submit"]').prop("disabled", false);
+        }
+    });
+
+    $('#age').change(() => {
+        validateAge();
+    });
+
+    function validateAge() {
+        var currentAge = parseInt($('#age').val());
+        if (currentAge < 1 || currentAge > 99) {
+            $("#validAge").show();
+            $('#nextButton').prop("disabled", true);
+        } else {
+            $("#validAge").hide();
+            $('#nextButton').prop("disabled", false);
+        }
+    }
+
+    // Increment and Decrement age buttons
+    $("#incrementAge").click(function () {
+        var currentAge = parseInt($('#age').val());
+        if (currentAge < 99) {
+            $('#age').val(currentAge + 1);
+            validateAge(); // Call validation function after changing the age
+        }
+    });
+
+    $("#decrementAge").click(function () {
+        var currentAge = parseInt($('#age').val());
+        if (currentAge > 0) {
+            $('#age').val(currentAge - 1);
+            validateAge(); // Call validation function after changing the age
         }
     });
 
@@ -323,6 +352,31 @@
             $("#selectDevice").hide();
         } else {
             $("#selectDevice").show();
+        }
+    });
+
+    // New fields change event handlers
+    $('#grasp').change(() => {
+        if ($('#grasp').val() !== '0') {
+            $("#selectGrasp").hide();
+        } else {
+            $("#selectGrasp").show();
+        }
+    });
+
+    $('#orientation').change(() => {
+        if ($('#orientation').val() !== '0') {
+            $("#selectOrientation").hide();
+        } else {
+            $("#selectOrientation").show();
+        }
+    });
+
+    $('#hand_movement').change(() => {
+        if ($('#hand_movement').val() !== '0') {
+            $("#selectHandMovement").hide();
+        } else {
+            $("#selectHandMovement").show();
         }
     });
 
@@ -346,21 +400,16 @@
         var currentAge = parseInt($('#age').val());
         if (currentAge < 0 || currentAge > 99) {
             $("#validAge").show();
-            $('input[type="submit"]').prop("disabled", true);
         } else {
             $("#validAge").hide();
-            $('input[type="submit"]').prop("disabled", false);
         }
     });
-
 
     // Disable the back button when the user navigates away
     history.pushState(null, null, document.URL);
     window.addEventListener('popstate', function () {
         history.pushState(null, null, document.URL);
     });
-
-
 </script>
 
 
